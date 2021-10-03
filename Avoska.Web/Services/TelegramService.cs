@@ -1,0 +1,57 @@
+using System;
+using System.Text;
+using Telegram.Bot;
+using Telegram.Bot.Args;
+using Telegram.Bot.Types.Enums;
+
+public class TelegramService
+{
+    private static TelegramBotClient client;
+
+    public TelegramService()
+    {
+        client = new TelegramBotClient("1901786898:AAHBiYdaG1zIHH_j7A-ay6TozsI6BwyAOiA");
+
+        //client.OnMessageEdited += BotOnMessageReceived;
+        /* 	client.OnMessage += BotOnMessageReceived;
+            client.OnMessageEdited += BotOnMessageReceived;
+            client.StartReceiving();
+            Console.ReadLine();
+            client.StopReceiving();  */
+    }
+
+
+    public void SendMessage(OrderDto order)
+    {
+        var message = new StringBuilder();
+
+        message.AppendLine(order.Name);
+        message.AppendLine(order.Phone);
+
+        message.AppendLine();
+
+        
+        message.AppendLine("Заказ: ");
+        
+        decimal summ = 0;
+        foreach (var item in order.Products)
+        {
+            var res = item.Price * item.Count;
+            summ += res;
+            message.AppendLine(String.Format("{0} x {1} [{2} руб]", item.Name, item.Count, res));
+        }
+
+        message.AppendLine(String.Format("Итого: {0} руб", summ));
+
+        //var message = "Заказ на адрес " + order.Address;
+        client.SendTextMessageAsync("-533179806", message.ToString());
+    }
+    private async void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
+    {
+        var message = messageEventArgs.Message;
+        if (message?.Type == MessageType.Text)
+        {
+            await client.SendTextMessageAsync(message.Chat.Id, message.Text);
+        }
+    }
+}
