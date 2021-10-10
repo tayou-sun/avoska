@@ -61,8 +61,8 @@ public class ProductRepository : IProductRepository
 
     public IEnumerable<Product> GetProductsByTagId(int tagId) => appDbContext.Products
         .Include(x => x.Tags)
-        .Where(x => x.Tags.Select(x => x.Id)
-        .Contains(tagId))
+       //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
+      .Where(x => x.Tags.Where(x=>x.Parent !=null).Select(x => x.Parent.Id).Contains(tagId))
         .ToList();
 
 

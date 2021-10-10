@@ -19,7 +19,7 @@ public class TagRepository : ITagRepository
             
         };
 
-        var rooms = appDbContext.Tags;
+        var rooms = appDbContext.Tags.Where(x=>x.Parent == null);
         return rooms.ToList();
     }
 
