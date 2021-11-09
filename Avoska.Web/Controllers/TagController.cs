@@ -29,7 +29,7 @@ namespace Avoska.Web.Controllers
         public IEnumerable<Tag> Get()
         {
             var rng = new Random();
-            var a = _productRepo.GetTags().ToList();
+            var a = _productRepo.GetTags().OrderBy(x=>x.OrderId).ToList();
             var c =  Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
@@ -38,6 +38,17 @@ namespace Avoska.Web.Controllers
             })
             .ToArray();
 
+            return a;
+        }
+
+
+        
+        [HttpGet("children")]
+        public IEnumerable<Tag> GetChildByParentTagId(int id)
+        {
+            var rng = new Random();
+            var a = _productRepo.GetChildsByParentId(id).ToList();
+    
             return a;
         }
     }

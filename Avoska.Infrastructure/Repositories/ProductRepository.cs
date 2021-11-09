@@ -62,8 +62,28 @@ public class ProductRepository : IProductRepository
     public IEnumerable<Product> GetProductsByTagId(int tagId) => appDbContext.Products
         .Include(x => x.Tags)
        //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
-      .Where(x => x.Tags.Where(x=>x.Parent !=null).Select(x => x.Parent.Id).Contains(tagId))
-        .ToList();
+      .Where(x => x.Tags.Where(x=>x.Parent !=null).Select(x => x.Parent.Id).Contains(tagId) )
+      
+        .ToList()
+        .Where(x=>x.Name != "Чай зеленый Tess Flirt клубника-белый персик 2 г х 25 шт").ToList();
 
+
+
+            public IEnumerable<Product> GetProductsByChildTagId(int tagId) => appDbContext.Products
+        .Include(x => x.Tags)
+       //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
+      .Where(x => x.Tags.Select(x => x.Id).Contains(tagId) )
+      
+        .ToList()
+        .Where(x=>x.Name != "Чай зеленый Tess Flirt клубника-белый персик 2 г х 25 шт").ToList();
+
+
+        public IEnumerable<Product> GetProductsByName(string name) => appDbContext.Products
+        
+       //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
+      .Where(x => name != null && x.Name.ToLower().Contains(name.ToLower()))
+      
+        .ToList();
+      
 
 }

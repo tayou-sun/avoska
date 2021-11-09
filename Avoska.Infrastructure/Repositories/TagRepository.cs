@@ -23,5 +23,13 @@ public class TagRepository : ITagRepository
         return rooms.ToList();
     }
 
-   
+
+ public IEnumerable<Tag> GetChildsByParentId(int id)
+    {
+
+        var rooms = appDbContext.Tags.Where(x=>x.Parent != null && x.Parent.Id == id);
+        return rooms.ToList();
+    }
+
+
 }
