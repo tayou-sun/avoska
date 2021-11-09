@@ -25,14 +25,15 @@ public class TelegramService
     {
         var message = new StringBuilder();
 
-        message.AppendLine(order.Name);
-        message.AppendLine(order.Phone);
+        message.AppendLine(String.Format("Имя: {0}", order.Name));
+        message.AppendLine(String.Format("Телефон: {0}", order.Phone));
+        message.AppendLine(String.Format("Адрес: {0}", order.Address));
 
         message.AppendLine();
 
-        
+
         message.AppendLine("Заказ: ");
-        
+
         decimal summ = 0;
         foreach (var item in order.Products)
         {
