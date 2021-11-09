@@ -31,18 +31,23 @@ public class TelegramService
 
         message.AppendLine();
 
-
         message.AppendLine("Заказ: ");
 
         decimal summ = 0;
+        var index = 1;
+
         foreach (var item in order.Products)
         {
             var res = item.Price * item.Count;
             summ += res;
-            message.AppendLine(String.Format("{0} x {1} [{2} руб]", item.Name, item.Count, res));
+            message.AppendLine(String.Format("{0}. {1} x {2} [{3} руб]", index, item.Name, item.Count, res));
+            index++;
         }
 
         message.AppendLine(String.Format("Итого: {0} руб", summ));
+
+        message.AppendLine();
+        message.AppendLine(String.Format("Комментарий: {0}", order.Comment));
 
         //var message = "Заказ на адрес " + order.Address;
         client.SendTextMessageAsync("-533179806", message.ToString());
