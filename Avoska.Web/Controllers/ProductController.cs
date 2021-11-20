@@ -26,7 +26,7 @@ namespace Avoska.Web.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Product> GetByTagId(int tagId)
+        public IEnumerable<ProductDto> GetByTagId(int tagId)
         {
             //_productRepository.Create(null);
             var products = _productRepository.GetProductsByChildTagId(tagId).ToList();
