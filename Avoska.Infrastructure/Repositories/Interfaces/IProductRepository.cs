@@ -6,7 +6,7 @@ public interface IProductRepository {
 
     void Create(Product product);
 
-     IEnumerable<ProductDto> GetProductsByChildTagId(int tagId);
+     IEnumerable<ProductDto> GetProductsByChildTagId(int tagId, int mode);
 
-     IEnumerable<Product> GetProductsByName(string name);
+     IEnumerable<Product> GetProductsByName(string name, int sort);
 }

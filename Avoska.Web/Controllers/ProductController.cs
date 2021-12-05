@@ -26,18 +26,18 @@ namespace Avoska.Web.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ProductDto> GetByTagId(int tagId)
+        public IEnumerable<ProductDto> GetByTagId(int tagId, int mode)
         {
             //_productRepository.Create(null);
-            var products = _productRepository.GetProductsByChildTagId(tagId).ToList();
+            var products = _productRepository.GetProductsByChildTagId(tagId, mode).ToList();
             return products;
         }
 
 
 [HttpGet("search")]
-public IEnumerable<Product> GetProductsByName(string name){
+public IEnumerable<Product> GetProductsByName(string name, int sort){
     var a = 2;
-    return _productRepository.GetProductsByName( name);
+    return _productRepository.GetProductsByName( name, sort);
 }
           [HttpPost]
         public int Post(List<Product> criterionValues)

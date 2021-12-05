@@ -61,34 +61,55 @@ public class ProductRepository : IProductRepository
 
     public IEnumerable<Product> GetProductsByTagId(int tagId) => appDbContext.Products
         .Include(x => x.Tags)
-       //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
-      .Where(x => x.Tags.Where(x=>x.Parent !=null).Select(x => x.Parent.Id).Contains(tagId) )
-      
+      //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
+      .Where(x => x.Tags.Where(x => x.Parent != null).Select(x => x.Parent.Id).Contains(tagId))
+
         .ToList()
-        .Where(x=>x.Name != "Чай зеленый Tess Flirt клубника-белый персик 2 г х 25 шт").ToList();
+        .Where(x => x.Name != "Чай зеленый Tess Flirt клубника-белый персик 2 г х 25 шт").ToList();
 
 
 
-            public IEnumerable<ProductDto> GetProductsByChildTagId(int tagId) { 
-                
-                var a = appDbContext.Products
-        .Include(x => x.Tags)
-       //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
-      .Where(x => x.Tags.Select(x => x.Id).Contains(tagId) ).ToList();
+    public IEnumerable<ProductDto> GetProductsByChildTagId(int tagId, int mode)
+    {
 
-      var b = a.Select(x=>new ProductDto(){Name = x.Name, Price = x.Price, ImageUrl = x.ImageUrl, TagName = x.Tags[0].Name, TagId =  x.Tags[0].Id, Id = x.Id})
-      .ToList();
+        var a = appDbContext.Products
+.Include(x => x.Tags)
+//.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
+.Where(x => x.Tags.Select(x => x.Id).Contains(tagId)).ToList();
 
-      return b;
-            }
-
-
-        public IEnumerable<Product> GetProductsByName(string name) => appDbContext.Products
-        
-       //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
-      .Where(x => name != null && x.Name.ToLower().Contains(name.ToLower()))
-      
+        var b = a.Select(x => new ProductDto() { Name = x.Name, Price = x.Price, ImageUrl = x.ImageUrl, TagName = x.Tags[0].Name, TagId = x.Tags[0].Id, Id = x.Id })
         .ToList();
-      
+
+        if (mode == 1)
+        {
+            b = b.OrderBy(x => x.Price).ToList();
+        }
+        else if (mode == 2)
+        {
+            b= b.OrderByDescending(x => x.Price).ToList();
+        }
+
+
+        return b;
+    }
+
+
+    public IEnumerable<Product> GetProductsByName(string name, int sort = -1)
+    {
+
+
+        var a = appDbContext.Products.Where(x => name != null && x.Name.ToLower().Contains(name.ToLower())).ToList();
+
+        if (sort == 0)
+        {
+            a = a.OrderBy(x => x.Price).ToList();
+        }
+        else if (sort == 1)
+        {
+            a = a.OrderByDescending(x => x.Price).ToList();
+        }
+        return a;
+    }
+
 
 }
