@@ -20,7 +20,15 @@ public class TelegramService
             client.StopReceiving();  */
     }
 
+    private string GetChangeModeName (int? value) {
 
+        switch (value){
+            case 1: return "Не звонить, удалить товар из заказа"; break;
+            case 2: return "Не звонить, подобрать замену самостоятельно"; break;
+         case 3: return "Позвонить для замены"; break;
+        }
+        return "";
+    }
     public void SendMessage(OrderDto order)
     {
         var message = new StringBuilder();
@@ -49,8 +57,11 @@ public class TelegramService
         message.AppendLine();
         message.AppendLine(String.Format("Комментарий: {0}", order.Comment));
 
+        message.AppendLine("__________________");
+        message.AppendLine(String.Format("Замена товара: {0}", GetChangeModeName(order.ChangeMode)));
+
         //var message = "Заказ на адрес " + order.Address;
-        client.SendTextMessageAsync("-533179806", message.ToString());
+        client.SendTextMessageAsync("-528825810", message.ToString());
     }
     private async void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
     {

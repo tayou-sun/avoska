@@ -41,7 +41,10 @@ public class OrderRepository : IOrderRepository
 
             Comment = order.Comment,
 
-            CreateDate = order.CreateDate
+            CreateDate = order.CreateDate,
+            ChangeMode = order.ChangeMode,
+            DeliveryMode = order.DeliveryMode
+             
         };
 
 

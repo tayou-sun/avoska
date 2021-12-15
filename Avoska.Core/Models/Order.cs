@@ -16,4 +16,8 @@ public class Order{
     public string Comment {get;set;}
 
     public DateTime CreateDate {get;set;}
+
+     public string Instagram {get;set;}
+      public int? DeliveryMode {get;set;}
+       public int? ChangeMode {get;set;}
 }
