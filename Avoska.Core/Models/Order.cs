@@ -19,5 +19,5 @@ public class Order{
 
      public string Instagram {get;set;}
       public int? DeliveryMode {get;set;}
-       public int? ChangeMode {get;set;}
+       public int? ChangeMode {get;set;} 
 }
