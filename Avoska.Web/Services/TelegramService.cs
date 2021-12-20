@@ -29,7 +29,7 @@ public class TelegramService
         }
         return "";
     }
-    public void SendMessage(OrderDto order)
+    public void SendMessage(OrderDto order, int id)
     {
         var message = new StringBuilder();
 
@@ -57,8 +57,17 @@ public class TelegramService
         message.AppendLine();
         message.AppendLine(String.Format("Комментарий: {0}", order.Comment));
 
+
+ message.AppendLine();
+ if (order.Code != "") {
+        message.AppendLine("* * * * * * * * * * * * * *");
+        message.AppendLine(String.Format("Промо-код: {0}", order.Code));
+        message.AppendLine("* * * * * * * * * * * * * *");
+ }
+
         message.AppendLine("__________________");
-        message.AppendLine(String.Format("Замена товара: {0}", GetChangeModeName(order.ChangeMode)));
+        message.AppendLine(String.Format("Ссылка на заказ: https://mgmt.avoska-dostavka.ru/order?id={0}", id));
+
 
         //var message = "Заказ на адрес " + order.Address;
         client.SendTextMessageAsync("-528825810", message.ToString());

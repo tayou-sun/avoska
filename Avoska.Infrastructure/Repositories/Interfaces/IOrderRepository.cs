@@ -1,5 +1,5 @@
 using System.Collections.Generic;
 
 public interface IOrderRepository {
-    void Create(OrderDto product);
+    int Create(OrderDto product);
 }

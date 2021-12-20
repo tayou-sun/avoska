@@ -28,9 +28,9 @@ namespace Avoska.Web.Controllers
 
         public int Post(OrderDto order)
         {
-            _orderRepository.Create(order);
+            var res = _orderRepository.Create(order);
             var bot = new TelegramService();
-            bot.SendMessage(order);
+            bot.SendMessage(order, res);
 
             return 1;
         }

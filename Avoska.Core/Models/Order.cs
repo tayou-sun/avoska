@@ -14,6 +14,7 @@ public class Order{
     public string Phone {get;set;}
 
     public string Comment {get;set;}
+    public string Code {get;set;}
 
     public DateTime CreateDate {get;set;}
 

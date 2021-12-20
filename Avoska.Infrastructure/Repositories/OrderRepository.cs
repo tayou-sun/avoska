@@ -11,7 +11,7 @@ public class OrderRepository : IOrderRepository
         this.appDbContext = appDbContext;
     }
 
-    public void Create(OrderDto order)
+    public int Create(OrderDto order)
     {
 
         var t = new List<OrderProduct>();
@@ -43,7 +43,8 @@ public class OrderRepository : IOrderRepository
 
             CreateDate = order.CreateDate,
             ChangeMode = order.ChangeMode,
-            DeliveryMode = order.DeliveryMode
+            DeliveryMode = order.DeliveryMode,
+            Code = order.Code
              
         };
 
@@ -51,5 +52,7 @@ public class OrderRepository : IOrderRepository
         var a = appDbContext.Orders.ToList();
         appDbContext.Orders.Add(orderToSave);
         appDbContext.SaveChanges();
+
+        return orderToSave.Id;
     }
 }
