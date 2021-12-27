@@ -13,4 +13,5 @@ public class Product {
     public List<Tag> Tags {get;set;}
     public List<Feature> Features{get;set;}
     public  string ImageUrl { get; set; }
+     public bool IsAvailable { get; set; }
 }

@@ -58,7 +58,13 @@ public class TelegramService
         message.AppendLine(String.Format("Комментарий: {0}", order.Comment));
 
 
+
+
+     message.AppendLine();
+        message.AppendLine(String.Format("Замена:", GetChangeModeName(order.ChangeMode)));
+
  message.AppendLine();
+ 
  if (order.Code != "") {
         message.AppendLine("* * * * * * * * * * * * * *");
         message.AppendLine(String.Format("Промо-код: {0}", order.Code));

@@ -75,7 +75,7 @@ public class ProductRepository : IProductRepository
         var a = appDbContext.Products
 .Include(x => x.Tags)
 //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
-.Where(x => x.Tags.Select(x => x.Id).Contains(tagId)).ToList();
+.Where(x => x.Tags.Select(x => x.Id).Contains(tagId) && x.IsAvailable).ToList();
 
         var b = a.Select(x => new ProductDto() { Name = x.Name, Price = x.Price, ImageUrl = x.ImageUrl, TagName = x.Tags[0].Name, TagId = x.Tags[0].Id, Id = x.Id })
         .ToList();
