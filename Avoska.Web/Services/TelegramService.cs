@@ -61,7 +61,7 @@ public class TelegramService
 
 
      message.AppendLine();
-        message.AppendLine(String.Format("Замена:", GetChangeModeName(order.ChangeMode)));
+        message.AppendLine(String.Format("Замена {0}:", GetChangeModeName(order.ChangeMode)));
 
  message.AppendLine();
  
