@@ -52,3 +52,4 @@
 /Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/Microsoft.AspNetCore.JsonPatch.dll
 /Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/Newtonsoft.Json.Bson.dll
+/Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/RestSharp.dll

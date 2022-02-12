@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ao1nEGIakbmZ+VfFZ/l5geJT8oF5aaSR+BOvI0SWb+AhHlK/L7Fzmt/FgNSbKjSiIU85JntwJn1hyjENLa8Xxw==",
+  "dgSpecHash": "1nM5vzVxWKh0sZGXGwXOUc9khSv0oH81o0uCSxpMbXwpERwV4nRTYP6n0z1M3Z2oN8V3GhpdPzcWT08OKA0uOQ==",
   "success": true,
   "projectFilePath": "/Users/ekaterina/Documents/avoska/Avoska.Web/Avoska.Web.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,7 @@
     "/Users/ekaterina/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/npgsql/5.0.10/npgsql.5.0.10.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/npgsql.entityframeworkcore.postgresql/5.0.10/npgsql.entityframeworkcore.postgresql.5.0.10.nupkg.sha512",
+    "/Users/ekaterina/.nuget/packages/restsharp/107.3.0/restsharp.107.3.0.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -108,6 +109,7 @@
     "/Users/ekaterina/.nuget/packages/system.security.cryptography.x509certificates/4.3.0/system.security.cryptography.x509certificates.4.3.0.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/system.text.encoding/4.3.0/system.text.encoding.4.3.0.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/system.text.encoding.extensions/4.3.0/system.text.encoding.extensions.4.3.0.nupkg.sha512",
+    "/Users/ekaterina/.nuget/packages/system.text.json/5.0.0/system.text.json.5.0.0.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/system.text.regularexpressions/4.3.0/system.text.regularexpressions.4.3.0.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/system.threading/4.3.0/system.threading.4.3.0.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512",
