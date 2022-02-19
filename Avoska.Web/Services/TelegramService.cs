@@ -76,7 +76,7 @@ public class TelegramService
 
 
         //var message = "Заказ на адрес " + order.Address;
-        client.SendTextMessageAsync("-528825810", message.ToString());
+        client.SendTextMessageAsync("-1001763086620", message.ToString());
     }
     private async void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
     {
