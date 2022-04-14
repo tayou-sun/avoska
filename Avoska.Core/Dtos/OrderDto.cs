@@ -20,4 +20,6 @@ public class OrderDto
        public int? ChangeMode {get;set;}
        public string Code { get; set; }
 
+       public string UserLogin {get;set;}
+
 }

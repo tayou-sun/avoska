@@ -6,6 +6,7 @@ using CStuffControl.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using StuffControl.Web.Settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using TokenApp;
 
 namespace Avoska.Web
 {
@@ -32,13 +36,49 @@ namespace Avoska.Web
             services.Configure<ConnectionStrings>(Configuration.GetSection(nameof(ConnectionStrings)));
 
             services.AddControllers();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.RequireHttpsMetadata = false;
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            // укзывает, будет ли валидироваться издатель при валидации токена
+                            ValidateIssuer = true,
+                            // строка, представляющая издателя
+                            ValidIssuer = AuthOptions.ISSUER,
+ 
+                            // будет ли валидироваться потребитель токена
+                            ValidateAudience = true,
+                            // установка потребителя токена
+                            ValidAudience = AuthOptions.AUDIENCE,
+                            // будет ли валидироваться время существования
+                            ValidateLifetime = true,
+ 
+                            // установка ключа безопасности
+                            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                            // валидация ключа безопасности
+                            ValidateIssuerSigningKey = true,
+                        };
+                    });
+
             services.AddDbContext<AppDbContext>(options =>
               options.UseNpgsql(Configuration.GetSection(nameof(ConnectionStrings)).GetSection("NpgSql").Value));
-
+              
+/*  services.AddIdentity<User, IdentityRole>(opts =>{
+     opts.Password.RequireDigit = false;
+     opts.Password.RequireLowercase = false;
+     opts.Password.RequireUppercase = false;
+     opts.Password.RequiredLength = 1;
+     opts.Password.RequireNonAlphanumeric = false;
+ })
+                .AddEntityFrameworkStores<AppDbContext>(); */
+                
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
- services.AddScoped<IStoreRepository, StoreRepository>();
+             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IStoreRepository, StoreRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Avoska.Web", Version = "v1" });
@@ -65,6 +105,9 @@ namespace Avoska.Web
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();    // аутентификация
+            app.UseAuthorization();     // авторизация
 
             app.UseRouting();
             app.UseCors("MyPolicy");

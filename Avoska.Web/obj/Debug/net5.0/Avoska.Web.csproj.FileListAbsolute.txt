@@ -53,3 +53,12 @@
 /Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/Newtonsoft.Json.Bson.dll
 /Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/RestSharp.dll
+/Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/HtmlAgilityPack.dll
+/Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/VkNet.dll
+/Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/Microsoft.IdentityModel.Logging.dll
+/Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/Microsoft.IdentityModel.Protocols.dll
+/Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/Microsoft.IdentityModel.Tokens.dll
+/Users/ekaterina/Documents/avoska/Avoska.Web/bin/Debug/net5.0/System.IdentityModel.Tokens.Jwt.dll

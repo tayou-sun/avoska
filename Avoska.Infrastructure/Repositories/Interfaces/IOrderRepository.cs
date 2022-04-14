@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
 public interface IOrderRepository {
-    int Create(OrderDto product);
+    Order Create(OrderDto product);
+    List<OrderDto> GetOrdersByUserPhone(string phone);
 }

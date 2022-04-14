@@ -11,11 +11,12 @@ public class OrderRepository : IOrderRepository
         this.appDbContext = appDbContext;
     }
 
-    public int Create(OrderDto order)
+    public Order Create(OrderDto order)
     {
-
+        var preparePhone = order.UserLogin.Replace(" ", "+");
         var t = new List<OrderProduct>();
 
+        var user = appDbContext.Users.FirstOrDefault(x => x.Phone == preparePhone);
         foreach (var product in order.Products)
         {
             var a1 = new OrderProduct()
@@ -41,11 +42,12 @@ public class OrderRepository : IOrderRepository
 
             Comment = order.Comment,
 
-            CreateDate = order.CreateDate,
+            CreateDate = DateTime.Now,
             ChangeMode = order.ChangeMode,
             DeliveryMode = order.DeliveryMode,
-            Code = order.Code
-             
+            Code = order.Code,
+            User = user
+
         };
 
 
@@ -53,6 +55,42 @@ public class OrderRepository : IOrderRepository
         appDbContext.Orders.Add(orderToSave);
         appDbContext.SaveChanges();
 
-        return orderToSave.Id;
+        return orderToSave;
+    }
+
+    public List<OrderDto> GetOrdersByUserPhone(string phone)
+    {
+        var preparePhone = phone.Replace(" ", "+");
+        var orders = appDbContext.Orders
+        .Include(x => x.Products)
+        .Include(x => x.User)
+        .Where(x => x.User.Phone == preparePhone).ToList();
+
+        var orderDtos = orders.Select(x =>
+        {
+            var a = new OrderDto();
+            a.Name = x.Name;
+            a.Id = x.Id;
+            a.Address = x.Address;
+            a.CreateDate = x.CreateDate;
+            a.Products = x.Products.Select(y => new OrderProductDto
+            {
+                ProductId = y.Id,
+                Count = y.Count,
+                Name = y.Name,
+                Price = y.Price
+            }).ToList();
+
+            return a;
+        }).ToList();
+
+        /*    new OrderProductDto{
+               ProductId = x.Id,
+               Count = x.Count,
+               Name = x.Name,
+               Price = x.Price
+           }).ToList();
+    */
+        return orderDtos;
     }
 }

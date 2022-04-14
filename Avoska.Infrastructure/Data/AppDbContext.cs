@@ -6,16 +6,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CStuffControl.Infrastructure
 {
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : DbContext
     {
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
             // Database.EnsureDeleted();   // удаляем бд со старой схемой
-            Database.EnsureCreated();
+             Database.EnsureCreated();
         }
 
-
+ public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Feature> Features { get; set; }
