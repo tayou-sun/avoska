@@ -46,7 +46,7 @@ namespace TokenApp.Controllers
 
 
         [HttpPost("token")]
-        public IActionResult Token(User p)
+        public IActionResult Token([FromBody]User p)
         {
             var identity = GetIdentity(p.Phone, p.Password);
             if (identity == null)
