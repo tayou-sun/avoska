@@ -13,7 +13,8 @@ public class OrderRepository : IOrderRepository
 
     public Order Create(OrderDto order)
     {
-        var preparePhone = order.UserLogin.Replace(" ", "+");
+        
+        var preparePhone = order.UserLogin != null ? order.UserLogin.Replace(" ", "+") : "";
         var t = new List<OrderProduct>();
 
         var user = appDbContext.Users.FirstOrDefault(x => x.Phone == preparePhone);
