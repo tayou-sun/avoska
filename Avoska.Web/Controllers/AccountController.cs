@@ -80,7 +80,7 @@ namespace TokenApp.Controllers
 
        
         [HttpPost("register")]
-        public IActionResult Register(User p)
+        public IActionResult Register([FromBody]User1 p)
         {
             var identity = CreateIdentity(p.Phone, p.Password);
             if (identity == null)
@@ -174,7 +174,7 @@ namespace TokenApp.Controllers
 
         [Authorize]
         [HttpPost("update")]
-        public IActionResult Update(User user)
+        public IActionResult Update(UserChange user)
         {
 
             var res = _orderRepository.Update(user);

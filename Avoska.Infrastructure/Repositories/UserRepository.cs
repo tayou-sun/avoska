@@ -36,9 +36,9 @@ public class UserRepository : IUserRepository
         return person;
     }
 
-    public User Update(User user)
+    public User Update(UserChange user)
     {
-        var result = appDbContext.Users.SingleOrDefault(b => b.Phone == user.Phone);
+        var result = appDbContext.Users.SingleOrDefault(b => b.Phone == user.OldPhone);
         if (result != null)
         {
             result.Name = user.Name;
