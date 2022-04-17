@@ -82,7 +82,7 @@ public class TelegramService
         }
 
         message.AppendLine("__________________");
-        message.AppendLine(String.Format("Ссылка на заказ: https://mgmt.avoska-dostavka.ru/order?id={0}", id));
+        message.AppendLine(String.Format("Ссылка на заказ: https://mgmt.avoska-dostavka.ru/order?id={0}", order.Id));
 
 
         //var message = "Заказ на адрес " + order.Address;
