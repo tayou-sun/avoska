@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+<PropertyGroup><ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles></PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.15" />
@@ -20,8 +21,7 @@
     <ProjectReference Include="../Avoska.Core/Avoska.Core.csproj" />
     <ProjectReference Include="../Avoska.Infrastructure/Avoska.Infrastructure.csproj" />
     <ProjectReference Include="../Avoska.Core/Avoska.Core.csproj" />
-    <PropertyGroup><ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles></PropertyGroup>
-
+    
   </ItemGroup>
 
 </Project>
