@@ -19,7 +19,7 @@ namespace Avoska.Web.Controllers
 
         private readonly ILogger<ProductController> _logger;
         private readonly IProductRepository _productRepository;
-        public ProductController(ILogger<ProductController> logger,IProductRepository productRepository)
+        public ProductController(ILogger<ProductController> logger, IProductRepository productRepository)
         {
             _logger = logger;
             _productRepository = productRepository;
@@ -34,12 +34,13 @@ namespace Avoska.Web.Controllers
         }
 
 
-[HttpGet("search")]
-public IEnumerable<Product> GetProductsByName(string name, int sort){
-    var a = 2;
-    return _productRepository.GetProductsByName( name, sort);
-}
-          [HttpPost]
+        [HttpGet("search")]
+        public IEnumerable<Product> GetProductsByName(string name, int sort)
+        {
+            var a = 2;
+            return _productRepository.GetProductsByName(name, sort);
+        }
+        [HttpPost]
         public int Post(List<Product> criterionValues)
         {
 
@@ -51,6 +52,19 @@ public IEnumerable<Product> GetProductsByName(string name, int sort){
             } */
             return 1;
         }
+
+
+
+
+
+   [HttpGet("detail")]
+        public ProductDto GetDetailById(int id)
+        {
+            //_productRepository.Create(null);
+            var products = _productRepository.GetDetailById(id);
+            return products;
+        }
+
 
     }
 }

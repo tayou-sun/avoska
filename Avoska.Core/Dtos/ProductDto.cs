@@ -10,6 +10,6 @@ public class ProductDto {
     public decimal Price {get;set;}
     public string TagName {get;set;}
     public int TagId {get;set;}
-    //public List<Feature> Features{get;set;}
+    public List<Feature> Features{get;set;}
     public  string ImageUrl { get; set; }
 }

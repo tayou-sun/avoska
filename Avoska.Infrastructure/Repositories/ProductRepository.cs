@@ -86,7 +86,7 @@ public class ProductRepository : IProductRepository
         }
         else if (mode == 2)
         {
-            b= b.OrderByDescending(x => x.Price).ToList();
+            b = b.OrderByDescending(x => x.Price).ToList();
         }
 
 
@@ -111,5 +111,18 @@ public class ProductRepository : IProductRepository
         return a;
     }
 
+    public ProductDto GetDetailById(int id)
+    {
+        var product = appDbContext.Products.Include(x=>x.Features).Include(x=>x.Tags).FirstOrDefault(x=>x.Id == id);
 
+        var productDto = new ProductDto() { Name = product.Name, Price = product.Price, ImageUrl = product.ImageUrl, TagName = product.Tags[0].Name, TagId = product.Tags[0].Id, Id = product.Id };
+        return productDto;
+    }
+
+
+
+    /*  ProductDto IProductRepository.GetDetailById(int id)
+     {
+         throw new NotImplementedException();
+     } */
 }

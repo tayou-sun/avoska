@@ -9,4 +9,7 @@ public interface IProductRepository {
      IEnumerable<ProductDto> GetProductsByChildTagId(int tagId, int mode);
 
      IEnumerable<Product> GetProductsByName(string name, int sort);
+
+
+    ProductDto GetDetailById(int id);
 }

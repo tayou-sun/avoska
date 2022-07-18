@@ -5,7 +5,6 @@
 /Users/ekaterina/Documents/avoska/Avoska.Infrastructure/bin/Debug/net5.0/appsettings.json
 /Users/ekaterina/Documents/avoska/Avoska.Infrastructure/bin/Debug/net5.0/Avoska.Infrastructure.deps.json
 /Users/ekaterina/Documents/avoska/Avoska.Infrastructure/bin/Debug/net5.0/Avoska.Infrastructure.dll
-/Users/ekaterina/Documents/avoska/Avoska.Infrastructure/bin/Debug/net5.0/ref/Avoska.Infrastructure.dll
 /Users/ekaterina/Documents/avoska/Avoska.Infrastructure/bin/Debug/net5.0/Avoska.Infrastructure.pdb
 /Users/ekaterina/Documents/avoska/Avoska.Infrastructure/bin/Debug/net5.0/Avoska.Core.dll
 /Users/ekaterina/Documents/avoska/Avoska.Infrastructure/bin/Debug/net5.0/Avoska.Core.pdb
@@ -21,3 +20,5 @@
 /Users/ekaterina/Documents/avoska/Avoska.Infrastructure/bin/Debug/net5.0/Avoska.Infrastructure.runtimeconfig.json
 /Users/ekaterina/Documents/avoska/Avoska.Infrastructure/bin/Debug/net5.0/Avoska.Infrastructure.runtimeconfig.dev.json
 /Users/ekaterina/Documents/avoska/Avoska.Infrastructure/obj/Debug/net5.0/Avoska.Infrastructure.genruntimeconfig.cache
+/Users/ekaterina/Documents/avoska/Avoska.Infrastructure/bin/Debug/net5.0/Avoska.Core
+/Users/ekaterina/Documents/avoska/Avoska.Infrastructure/obj/Debug/net5.0/refint/Avoska.Infrastructure.dll

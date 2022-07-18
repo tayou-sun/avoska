@@ -79,7 +79,9 @@ public class OrderRepository : IOrderRepository
                 ProductId = y.Id,
                 Count = y.Count,
                 Name = y.Name,
-                Price = y.Price
+                Price = y.Price,
+                Image =y.Image
+                
             }).ToList();
 
             return a;

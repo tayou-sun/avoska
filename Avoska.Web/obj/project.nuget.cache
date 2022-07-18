@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5mKhZQS3bieyV3C1/4p/vSFTUdFTSn4WN5zNLJ8t3rgI0NUFx68FQx135w0xhmvwhkV8KHGrXoJBj7tA9NBwAA==",
+  "dgSpecHash": "ImJqpEOT5FJy4K5yhKQfG8zIXBIOdLYqyvCMFx5zatqZjwe+PN8lzKNxt6L7wKF8UmiqyENnvNrSUr8aThtleA==",
   "success": true,
   "projectFilePath": "/Users/ekaterina/Documents/avoska/Avoska.Web/Avoska.Web.csproj",
   "expectedPackageFiles": [
@@ -127,7 +127,8 @@
     "/Users/ekaterina/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/telegram.bot/16.0.2/telegram.bot.16.0.2.nupkg.sha512",
-    "/Users/ekaterina/.nuget/packages/vknet/1.68.0/vknet.1.68.0.nupkg.sha512"
+    "/Users/ekaterina/.nuget/packages/vknet/1.68.0/vknet.1.68.0.nupkg.sha512",
+    "/Users/ekaterina/.nuget/packages/microsoft.netcore.app.host.osx-x64/5.0.16/microsoft.netcore.app.host.osx-x64.5.0.16.nupkg.sha512"
   ],
   "logs": []
 }
