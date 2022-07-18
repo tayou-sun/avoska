@@ -20,6 +20,8 @@
     <ProjectReference Include="../Avoska.Core/Avoska.Core.csproj" />
     <ProjectReference Include="../Avoska.Infrastructure/Avoska.Infrastructure.csproj" />
     <ProjectReference Include="../Avoska.Core/Avoska.Core.csproj" />
+    <PropertyGroup><ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles></PropertyGroup>
+
   </ItemGroup>
 
 </Project>
