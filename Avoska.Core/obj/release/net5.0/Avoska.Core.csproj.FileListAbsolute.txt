@@ -4,7 +4,6 @@
 /Users/ekaterina/Documents/avoska/Avoska.Core/bin/release/net5.0/Avoska.Core.runtimeconfig.json
 /Users/ekaterina/Documents/avoska/Avoska.Core/bin/release/net5.0/Avoska.Core.runtimeconfig.dev.json
 /Users/ekaterina/Documents/avoska/Avoska.Core/bin/release/net5.0/Avoska.Core.dll
-/Users/ekaterina/Documents/avoska/Avoska.Core/bin/release/net5.0/ref/Avoska.Core.dll
 /Users/ekaterina/Documents/avoska/Avoska.Core/bin/release/net5.0/Avoska.Core.pdb
 /Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/Avoska.Core.csproj.AssemblyReference.cache
 /Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/Avoska.Core.GeneratedMSBuildEditorConfig.editorconfig
@@ -13,10 +12,11 @@
 /Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/Avoska.Core.csproj.CoreCompileInputs.cache
 /Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/Avoska.Core.MvcApplicationPartsAssemblyInfo.cache
 /Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/staticwebassets/Avoska.Core.StaticWebAssets.Manifest.cache
-/Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/staticwebassets/Avoska.Core.StaticWebAssets.xml
 /Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/scopedcss/bundle/Avoska.Core.styles.css
 /Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/Avoska.Core.RazorTargetAssemblyInfo.cache
 /Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/Avoska.Core.dll
 /Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/ref/Avoska.Core.dll
 /Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/Avoska.Core.pdb
 /Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/Avoska.Core.genruntimeconfig.cache
+/Users/ekaterina/Documents/avoska/Avoska.Core/bin/release/net5.0/Avoska.Core
+/Users/ekaterina/Documents/avoska/Avoska.Core/obj/release/net5.0/refint/Avoska.Core.dll

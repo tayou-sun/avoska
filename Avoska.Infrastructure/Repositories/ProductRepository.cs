@@ -77,7 +77,16 @@ public class ProductRepository : IProductRepository
 //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
 .Where(x => x.Tags.Select(x => x.Id).Contains(tagId) && x.IsAvailable).ToList();
 
-        var b = a.Select(x => new ProductDto() { Name = x.Name, Price = x.Price, ImageUrl = x.ImageUrl, TagName = x.Tags[0].Name, TagId = x.Tags[0].Id, Id = x.Id })
+        var b = a.Select(x => new ProductDto()
+        {
+            Name = x.Name,
+            Price = x.Price,
+            NewPrice = x.NewPrice,
+            ImageUrl = x.ImageUrl,
+            TagName = x.Tags[0].Name,
+            TagId = x.Tags[0].Id,
+            Id = x.Id
+        })
         .ToList();
 
         if (mode == 1)
@@ -113,10 +122,35 @@ public class ProductRepository : IProductRepository
 
     public ProductDto GetDetailById(int id)
     {
-        var product = appDbContext.Products.Include(x=>x.Features).Include(x=>x.Tags).FirstOrDefault(x=>x.Id == id);
+        var product = appDbContext.Products.Include(x => x.Features).Include(x => x.Tags).FirstOrDefault(x => x.Id == id);
 
-        var productDto = new ProductDto() { Name = product.Name, Price = product.Price, ImageUrl = product.ImageUrl, TagName = product.Tags[0].Name, TagId = product.Tags[0].Id, Id = product.Id };
+        var productDto = new ProductDto() { Name = product.Name, Price = product.Price, ImageUrl = product.ImageUrl, TagName = product.Tags[0].Name, TagId = product.Tags[0].Id, Id = product.Id, NewPrice = product.NewPrice };
         return productDto;
+    }
+
+    public IEnumerable<ProductDto> GetSaleProducts()
+    {
+
+        var a = appDbContext.Products
+.Include(x => x.Tags)
+//.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
+.Where(x => x.NewPrice != null).ToList();
+
+        var b = a.Select(x => new ProductDto()
+        {
+            Name = x.Name,
+            Price = x.Price,
+            NewPrice = x.NewPrice,
+            ImageUrl = x.ImageUrl,
+            TagName = x.Tags[0].Name,
+            TagId = x.Tags[0].Id,
+            Id = x.Id
+        })
+        .ToList();
+
+         b = b.OrderByDescending(x => x.Price).ToList();
+
+        return b;
     }
 
 

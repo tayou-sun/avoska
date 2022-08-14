@@ -13,7 +13,7 @@ public class OrderRepository : IOrderRepository
 
     public Order Create(OrderDto order)
     {
-        
+
         var preparePhone = order.UserLogin != null ? order.UserLogin.Replace(" ", "+") : "";
         var t = new List<OrderProduct>();
 
@@ -24,7 +24,9 @@ public class OrderRepository : IOrderRepository
             {
                 Name = product.Name,
                 Price = product.Price,
-                Count = product.Count
+                Count = product.Count,
+                ImageUrl = product.Image,
+                NewPrice = product.NewPrice
             };
 
             t.Add(a1);
@@ -32,6 +34,8 @@ public class OrderRepository : IOrderRepository
 
         }
         appDbContext.SaveChanges();
+
+
 
         var orderToSave = new Order()
         {
@@ -56,6 +60,17 @@ public class OrderRepository : IOrderRepository
         appDbContext.Orders.Add(orderToSave);
         appDbContext.SaveChanges();
 
+        var status = new StatusOrder()
+        {
+            Order = orderToSave,
+            CreateDate = DateTime.Now,
+            Status = appDbContext.Status.FirstOrDefault(x => x.Id == 1),
+
+        };
+
+        appDbContext.StatusOrder.Add(status);
+        appDbContext.SaveChanges();
+
         return orderToSave;
     }
 
@@ -65,7 +80,11 @@ public class OrderRepository : IOrderRepository
         var orders = appDbContext.Orders
         .Include(x => x.Products)
         .Include(x => x.User)
+        .Include(x => x.StatusOrders)
+        .ThenInclude(x => x.Status)
         .Where(x => x.User.Phone == preparePhone).ToList();
+
+
 
         var orderDtos = orders.Select(x =>
         {
@@ -74,18 +93,20 @@ public class OrderRepository : IOrderRepository
             a.Id = x.Id;
             a.Address = x.Address;
             a.CreateDate = x.CreateDate;
+            a.Status = x.StatusOrders.OrderByDescending(y => y.Id)?.FirstOrDefault() != null ? x.StatusOrders.OrderByDescending(y => y.Id)?.FirstOrDefault().Status.Name
+            : "Выполнен";
             a.Products = x.Products.Select(y => new OrderProductDto
             {
                 ProductId = y.Id,
                 Count = y.Count,
                 Name = y.Name,
                 Price = y.Price,
-                Image =y.Image
-                
+                Image = y.ImageUrl
+
             }).ToList();
 
             return a;
-        }).ToList();
+        }).OrderByDescending(x => x.Id).ToList();
 
         /*    new OrderProductDto{
                ProductId = x.Id,
