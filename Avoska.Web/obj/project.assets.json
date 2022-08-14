@@ -6414,11 +6414,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/ekaterina/Documents/avoska/Avoska.Web/Avoska.Web.csproj",
+      "projectUniqueName": "/Users/ekaterina/avoska/Avoska.Web/Avoska.Web.csproj",
       "projectName": "Avoska.Web",
-      "projectPath": "/Users/ekaterina/Documents/avoska/Avoska.Web/Avoska.Web.csproj",
+      "projectPath": "/Users/ekaterina/avoska/Avoska.Web/Avoska.Web.csproj",
       "packagesPath": "/Users/ekaterina/.nuget/packages/",
-      "outputPath": "/Users/ekaterina/Documents/avoska/Avoska.Web/obj/",
+      "outputPath": "/Users/ekaterina/avoska/Avoska.Web/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/ekaterina/.nuget/NuGet/NuGet.Config"
@@ -6433,11 +6433,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "/Users/ekaterina/Documents/avoska/Avoska.Core/Avoska.Core.csproj": {
-              "projectPath": "/Users/ekaterina/Documents/avoska/Avoska.Core/Avoska.Core.csproj"
+            "/Users/ekaterina/avoska/Avoska.Core/Avoska.Core.csproj": {
+              "projectPath": "/Users/ekaterina/avoska/Avoska.Core/Avoska.Core.csproj"
             },
-            "/Users/ekaterina/Documents/avoska/Avoska.Infrastructure/Avoska.Infrastructure.csproj": {
-              "projectPath": "/Users/ekaterina/Documents/avoska/Avoska.Infrastructure/Avoska.Infrastructure.csproj"
+            "/Users/ekaterina/avoska/Avoska.Infrastructure/Avoska.Infrastructure.csproj": {
+              "projectPath": "/Users/ekaterina/avoska/Avoska.Infrastructure/Avoska.Infrastructure.csproj"
             }
           }
         }

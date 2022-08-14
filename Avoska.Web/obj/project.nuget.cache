@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ImJqpEOT5FJy4K5yhKQfG8zIXBIOdLYqyvCMFx5zatqZjwe+PN8lzKNxt6L7wKF8UmiqyENnvNrSUr8aThtleA==",
+  "dgSpecHash": "vGOrtOk6n56A5rMq26xdauSf05dHhGh870xbUPDNa7gmdeKVmRPusLYde5kfa3ZQgp6x3NF3rYSqP5UdxYzD8g==",
   "success": true,
-  "projectFilePath": "/Users/ekaterina/Documents/avoska/Avoska.Web/Avoska.Web.csproj",
+  "projectFilePath": "/Users/ekaterina/avoska/Avoska.Web/Avoska.Web.csproj",
   "expectedPackageFiles": [
     "/Users/ekaterina/.nuget/packages/htmlagilitypack/1.11.38/htmlagilitypack.1.11.38.nupkg.sha512",
     "/Users/ekaterina/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
