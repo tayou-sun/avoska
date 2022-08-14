@@ -26,10 +26,10 @@ namespace Avoska.Web.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ProductDto> GetByTagId(int tagId, int mode)
+        public IEnumerable<ProductDto> GetByTagId(int tagId, int mode, int page)
         {
             //_productRepository.Create(null);
-            var products = _productRepository.GetProductsByChildTagId(tagId, mode).ToList();
+            var products = _productRepository.GetProductsByChildTagId(tagId, mode, page).ToList();
             return products;
         }
 
