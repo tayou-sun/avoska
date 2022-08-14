@@ -55,9 +55,14 @@ namespace Avoska.Web.Controllers
 
 
 
+        [HttpGet("sale")]
+        public IEnumerable<ProductDto> GetSaleProducts(string name, int sort)
+        {
+            return _productRepository.GetSaleProducts();
+        }
 
 
-   [HttpGet("detail")]
+        [HttpGet("detail")]
         public ProductDto GetDetailById(int id)
         {
             //_productRepository.Create(null);

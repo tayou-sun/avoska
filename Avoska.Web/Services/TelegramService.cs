@@ -47,17 +47,20 @@ public class TelegramService
         message.AppendLine("Заказ: ");
 
         decimal summ = 0;
+        decimal sale = 0;
         var index = 1;
 
         foreach (var item in order.Products)
         {
-            var res = item.Price * item.Count;
+            var res = (item.NewPrice != 0 ? item.NewPrice : item.Price)  * item.Count;
             summ += res;
+            sale += item.NewPrice != 0 ? item.Price - item.NewPrice : 0;
             message.AppendLine(String.Format("{0}. {1} x {2} [{3} руб]", index, item.Name, item.Count, res));
             index++;
         }
 
         message.AppendLine(String.Format("Итого: {0} руб", summ));
+        message.AppendLine(String.Format("Скидка: {0} руб", sale));
 
         message.AppendLine();
 
@@ -82,7 +85,8 @@ public class TelegramService
         }
 
         message.AppendLine("__________________");
-        message.AppendLine(String.Format("Ссылка на заказ: https://mgmt.avoska-dostavka.ru/", id.Id));
+        //message.AppendLine(String.Format("Ссылка на заказ: https://mgmt.avoska-dostavka.ru/{0}", id.Id));
+        message.AppendLine(String.Format("Ссылка на заказ: https://mgmt.avoska-dostavka.ru/purchase?id={0}", id.Id));
 
 
         //var message = "Заказ на адрес " + order.Address;
