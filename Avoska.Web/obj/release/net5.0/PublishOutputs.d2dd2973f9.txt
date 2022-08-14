@@ -4,6 +4,7 @@
 /Users/ekaterina/avoska/Avoska.Web/out/Avoska.Core.runtimeconfig.json
 /Users/ekaterina/avoska/Avoska.Web/out/appsettings.Development.json
 /Users/ekaterina/avoska/Avoska.Web/out/appsettings.json
+/Users/ekaterina/avoska/Avoska.Web/out/out/out/web.config
 /Users/ekaterina/avoska/Avoska.Web/out/out/web.config
 /Users/ekaterina/avoska/Avoska.Web/out/out/appsettings.Development.json
 /Users/ekaterina/avoska/Avoska.Web/out/out/appsettings.json
@@ -11,6 +12,12 @@
 /Users/ekaterina/avoska/Avoska.Web/out/out/Avoska.Core.runtimeconfig.json
 /Users/ekaterina/avoska/Avoska.Web/out/out/Avoska.Web.deps.json
 /Users/ekaterina/avoska/Avoska.Web/out/out/Avoska.Web.runtimeconfig.json
+/Users/ekaterina/avoska/Avoska.Web/out/out/out/appsettings.Development.json
+/Users/ekaterina/avoska/Avoska.Web/out/out/out/appsettings.json
+/Users/ekaterina/avoska/Avoska.Web/out/out/out/Avoska.Core.deps.json
+/Users/ekaterina/avoska/Avoska.Web/out/out/out/Avoska.Core.runtimeconfig.json
+/Users/ekaterina/avoska/Avoska.Web/out/out/out/Avoska.Web.deps.json
+/Users/ekaterina/avoska/Avoska.Web/out/out/out/Avoska.Web.runtimeconfig.json
 /Users/ekaterina/avoska/Avoska.Web/out/Avoska.Web.dll
 /Users/ekaterina/avoska/Avoska.Web/out/Avoska.Web.runtimeconfig.json
 /Users/ekaterina/avoska/Avoska.Web/out/Avoska.Web.pdb

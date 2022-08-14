@@ -136,3 +136,10 @@
 /Users/ekaterina/avoska/Avoska.Web/obj/release/net5.0/Avoska.Web.pdb
 /Users/ekaterina/avoska/Avoska.Web/obj/release/net5.0/Avoska.Web.genruntimeconfig.cache
 /Users/ekaterina/avoska/Avoska.Web/obj/release/net5.0/ref/Avoska.Web.dll
+/Users/ekaterina/avoska/Avoska.Web/bin/release/net5.0/out/out/web.config
+/Users/ekaterina/avoska/Avoska.Web/bin/release/net5.0/out/out/appsettings.Development.json
+/Users/ekaterina/avoska/Avoska.Web/bin/release/net5.0/out/out/appsettings.json
+/Users/ekaterina/avoska/Avoska.Web/bin/release/net5.0/out/out/Avoska.Core.deps.json
+/Users/ekaterina/avoska/Avoska.Web/bin/release/net5.0/out/out/Avoska.Core.runtimeconfig.json
+/Users/ekaterina/avoska/Avoska.Web/bin/release/net5.0/out/out/Avoska.Web.deps.json
+/Users/ekaterina/avoska/Avoska.Web/bin/release/net5.0/out/out/Avoska.Web.runtimeconfig.json
