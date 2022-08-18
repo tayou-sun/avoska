@@ -79,6 +79,7 @@ namespace Avoska.Web
             services.AddScoped<IOrderRepository, OrderRepository>();
              services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IStoreRepository, StoreRepository>();
+             services.AddScoped<IStatusRepository, StatusRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Avoska.Web", Version = "v1" });
