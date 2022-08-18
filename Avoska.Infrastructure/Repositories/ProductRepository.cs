@@ -69,7 +69,7 @@ public class ProductRepository : IProductRepository
 
 
 
-    public IEnumerable<ProductDto> GetProductsByChildTagId(int tagId, int mode)
+    public IEnumerable<ProductDto> GetProductsByChildTagId(int tagId, int mode, int page = 0)
     {
 
         var a = appDbContext.Products
@@ -87,9 +87,12 @@ public class ProductRepository : IProductRepository
             TagId = x.Tags[0].Id,
             Id = x.Id
         })
+        .OrderBy(x => x.Price)
+        .Skip(page*20)
+        .Take(20)
         .ToList();
 
-        if (mode == 1)
+       /*  if (mode == 1)
         {
             b = b.OrderBy(x => x.Price).ToList();
         }
@@ -97,7 +100,8 @@ public class ProductRepository : IProductRepository
         {
             b = b.OrderByDescending(x => x.Price).ToList();
         }
-
+ */
+        
 
         return b;
     }

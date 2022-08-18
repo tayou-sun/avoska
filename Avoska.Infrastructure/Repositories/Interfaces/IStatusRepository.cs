@@ -3,5 +3,5 @@ using System.Collections.Generic;
 public interface IStatusRepository
 {
 
-    ProductDto GetDetailById(int id);
+    string GetDetailById(string phone);
 }

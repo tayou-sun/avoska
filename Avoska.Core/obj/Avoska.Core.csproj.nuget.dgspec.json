@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ekaterina/Documents/avoska/Avoska.Core/Avoska.Core.csproj": {}
+    "/Users/ekaterina/avoska/Avoska.Core/Avoska.Core.csproj": {}
   },
   "projects": {
-    "/Users/ekaterina/Documents/avoska/Avoska.Core/Avoska.Core.csproj": {
+    "/Users/ekaterina/avoska/Avoska.Core/Avoska.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ekaterina/Documents/avoska/Avoska.Core/Avoska.Core.csproj",
+        "projectUniqueName": "/Users/ekaterina/avoska/Avoska.Core/Avoska.Core.csproj",
         "projectName": "Avoska.Core",
-        "projectPath": "/Users/ekaterina/Documents/avoska/Avoska.Core/Avoska.Core.csproj",
+        "projectPath": "/Users/ekaterina/avoska/Avoska.Core/Avoska.Core.csproj",
         "packagesPath": "/Users/ekaterina/.nuget/packages/",
-        "outputPath": "/Users/ekaterina/Documents/avoska/Avoska.Core/obj/",
+        "outputPath": "/Users/ekaterina/avoska/Avoska.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ekaterina/.nuget/NuGet/NuGet.Config"
