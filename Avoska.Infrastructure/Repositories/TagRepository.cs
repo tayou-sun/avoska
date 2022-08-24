@@ -27,6 +27,7 @@ public class TagRepository : ITagRepository
     {
 
         var rooms = appDbContext.Tags.Where(x=>x.Parent != null && x.Parent.Id == id);
+        var a = rooms.ToList();
         return rooms.ToList();
     }
 

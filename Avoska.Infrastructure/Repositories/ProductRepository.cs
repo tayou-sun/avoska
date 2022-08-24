@@ -126,9 +126,21 @@ public class ProductRepository : IProductRepository
 
     public ProductDto GetDetailById(int id)
     {
-        var product = appDbContext.Products.Include(x => x.Features).Include(x => x.Tags).FirstOrDefault(x => x.Id == id);
+        var product = appDbContext.Products.Include(x => x.Features).Include(x => x.Tags).ThenInclude(x=>x.Parent).FirstOrDefault(x => x.Id == id);
 
-        var productDto = new ProductDto() { Name = product.Name, Price = product.Price, ImageUrl = product.ImageUrl, TagName = product.Tags[0].Name, TagId = product.Tags[0].Id, Id = product.Id, NewPrice = product.NewPrice };
+            var productDto = new ProductDto() {
+                Name = product.Name, 
+                Price = product.Price, 
+                ImageUrl = product.ImageUrl, 
+                TagName = product.Tags[0].Name, 
+                TagId = product.Tags[0].Id, 
+                Id = product.Id, 
+                Parent =  product.Tags[0].Parent.Id,
+                NewPrice = product.NewPrice,
+                Options = product.Options,
+
+                Description = product.Description  
+                };
         return productDto;
     }
 

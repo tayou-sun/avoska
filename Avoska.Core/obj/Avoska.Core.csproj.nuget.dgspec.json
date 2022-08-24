@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ekaterina/avoska/Avoska.Core/Avoska.Core.csproj": {}
+    "C:\\Users\\Home\\Desktop\\programms\\avoska\\Avoska.Core\\Avoska.Core.csproj": {}
   },
   "projects": {
-    "/Users/ekaterina/avoska/Avoska.Core/Avoska.Core.csproj": {
+    "C:\\Users\\Home\\Desktop\\programms\\avoska\\Avoska.Core\\Avoska.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ekaterina/avoska/Avoska.Core/Avoska.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Home\\Desktop\\programms\\avoska\\Avoska.Core\\Avoska.Core.csproj",
         "projectName": "Avoska.Core",
-        "projectPath": "/Users/ekaterina/avoska/Avoska.Core/Avoska.Core.csproj",
-        "packagesPath": "/Users/ekaterina/.nuget/packages/",
-        "outputPath": "/Users/ekaterina/avoska/Avoska.Core/obj/",
+        "projectPath": "C:\\Users\\Home\\Desktop\\programms\\avoska\\Avoska.Core\\Avoska.Core.csproj",
+        "packagesPath": "C:\\Users\\Home\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Home\\Desktop\\programms\\avoska\\Avoska.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/ekaterina/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Home\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -47,12 +47,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.osx-x64",
-              "version": "[5.0.16, 5.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -61,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iJNdCxi+5EWXu5epJhsiUrndu3cJ9HZOuU560SVOpiNVXR0FlEY6OfOwllR0Gr1ZpAF6s8KM+SKx7R3xEQdhNA==",
+  "dgSpecHash": "przxjI2mxd30g4FMFhYLnsr+FKRGmWkt02UqABermDqyGDJDYlktSIo8iY77+wYnrbwMx50ooh8Hg9E5FjU7nA==",
   "success": true,
-  "projectFilePath": "/Users/ekaterina/avoska/Avoska.Core/Avoska.Core.csproj",
-  "expectedPackageFiles": [
-    "/Users/ekaterina/.nuget/packages/microsoft.netcore.app.host.osx-x64/5.0.16/microsoft.netcore.app.host.osx-x64.5.0.16.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\Home\\Desktop\\programms\\avoska\\Avoska.Core\\Avoska.Core.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
