@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 public class OrderDto
 {
+    public OrderDto()
+    {
+        Products = new List<OrderProductDto>();
+    }
     public int Id { get; set; }
     public List<OrderProductDto> Products { get; set; }
 

@@ -288,3 +288,11 @@ C:\Users\Home\Desktop\programms\avoska\Avoska.Web\obj\release\net5.0\refint\Avos
 C:\Users\Home\Desktop\programms\avoska\Avoska.Web\obj\release\net5.0\Avoska.Web.pdb
 C:\Users\Home\Desktop\programms\avoska\Avoska.Web\obj\release\net5.0\Avoska.Web.genruntimeconfig.cache
 C:\Users\Home\Desktop\programms\avoska\Avoska.Web\obj\release\net5.0\ref\Avoska.Web.dll
+C:\Users\Home\Desktop\programms\avoska\Avoska.Web\bin\release\net5.0\out\out\out\out\out\out\out\out\web.config
+C:\Users\Home\Desktop\programms\avoska\Avoska.Web\bin\release\net5.0\out\out\out\out\out\out\out\out\appsettings.Development.json
+C:\Users\Home\Desktop\programms\avoska\Avoska.Web\bin\release\net5.0\out\out\out\out\out\out\out\out\appsettings.json
+C:\Users\Home\Desktop\programms\avoska\Avoska.Web\bin\release\net5.0\out\out\out\out\out\out\out\out\Avoska.Core.deps.json
+C:\Users\Home\Desktop\programms\avoska\Avoska.Web\bin\release\net5.0\out\out\out\out\out\out\out\out\Avoska.Core.runtimeconfig.json
+C:\Users\Home\Desktop\programms\avoska\Avoska.Web\bin\release\net5.0\out\out\out\out\out\out\out\out\Avoska.Web.deps.json
+C:\Users\Home\Desktop\programms\avoska\Avoska.Web\bin\release\net5.0\out\out\out\out\out\out\out\out\Avoska.Web.runtimeconfig.json
+C:\Users\Home\Desktop\programms\avoska\Avoska.Web\bin\release\net5.0\out\package-lock.json

@@ -29,7 +29,7 @@ public class StatusRepository : IStatusRepository
         var sortedOrders = orders?.OrderByDescending(x => x.Id).ToList().First();
 
 
-        return sortedOrders.Status.Id == 4 ? null : sortedOrders.Status.Name;
+        return  sortedOrders.Status == null || sortedOrders.Status.Id == 4 ? null : sortedOrders.Status.Name;
     }
 
 }

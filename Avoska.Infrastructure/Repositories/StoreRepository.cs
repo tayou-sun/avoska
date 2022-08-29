@@ -17,8 +17,8 @@ public class StoreRepository : IStoreRepository
     public IEnumerable<Store> GetStores()
     {
 
-        var rooms = appDbContext.Stores.Include(x=>x.Tags).ToList();
-        return rooms.ToList();
+        var stores = appDbContext.Stores.Include(x=>x.Tags).ToList();
+        return stores.ToList();
     }
 
 

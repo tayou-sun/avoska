@@ -6,7 +6,7 @@ using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InputFiles;
-
+using System.Linq;
 public class TelegramService
 {
     private static TelegramBotClient client;
@@ -34,13 +34,13 @@ public class TelegramService
         }
         return "";
     }
-    public void SendMessage(OrderDto order, Order id)
+    public void SendMessage(OrderDto orderDto, Order order)
     {
         var message = new StringBuilder();
 
-        message.AppendLine(String.Format("Имя: {0}", order.Name));
-        message.AppendLine(String.Format("Телефон: {0}", order.Phone));
-        message.AppendLine(String.Format("Адрес: {0}", order.Address));
+        message.AppendLine(String.Format("Имя: {0}", orderDto.Name));
+        message.AppendLine(String.Format("Телефон: {0}", orderDto.Phone));
+        message.AppendLine(String.Format("Адрес: {0}", orderDto.Address));
 
         message.AppendLine();
 
@@ -48,56 +48,84 @@ public class TelegramService
 
         decimal summ = 0;
         decimal sale = 0;
-        var index = 1;
 
-        foreach (var item in order.Products)
+
+        var groups = orderDto.Products.GroupBy(x => x.Store?.Name);
+
+        foreach (var group in groups)
         {
-            var res = (item.NewPrice != 0 ? item.NewPrice : item.Price)  * item.Count;
-            summ += res;
-            sale += item.NewPrice != 0 ? item.Price - item.NewPrice : 0;
-            message.AppendLine(String.Format("{0}. {1} x {2} [{3} руб]", index, item.Name, item.Count, res));
-            index++;
+            var index = 1;
+            if (group.Key != null)
+                message.AppendLine("<b>" + group.Key + "</b>");
+                else {
+                     message.AppendLine("<b>Супермаркет</b>");
+                }
+            // message.AppendLine(group.Key);
+            foreach (var item in group)
+            {
+                var res = ((item.NewPrice != 0 ? item.NewPrice : item.Price) + item.AdditionalSum) * item.Count;
+                summ += res;
+
+                sale += item.NewPrice != 0 ? item.Price - item.NewPrice : 0;
+                message.AppendLine(String.Format("{0}. {1} x {2} + {3} [{4} руб]", index, item.Name, item.Count, item.AdditionalSum, res));
+                if (item.Info != null)
+                    message.AppendLine(String.Format("Доп: <i>{0}</i> ", item.Info));
+                index++;
+            }
+              message.AppendLine("<b> </b>");
         }
+
+      /*   foreach (var item in orderDto.Products)
+        {
+            var res = ((item.NewPrice != 0 ? item.NewPrice : item.Price) + item.AdditionalSum) * item.Count;
+            summ += res;
+
+            sale += item.NewPrice != 0 ? item.Price - item.NewPrice : 0;
+            message.AppendLine(String.Format("{0}. {1} x {2} + {3} [{4} руб]", index, item.Name, item.Count, item.AdditionalSum, res));
+            if (item.Info != "")
+                message.AppendLine(String.Format("Доп: {0}", item.Info));
+            index++;
+        } */
 
         message.AppendLine(String.Format("Итого: {0} руб", summ));
         message.AppendLine(String.Format("Скидка: {0} руб", sale));
 
         message.AppendLine();
 
-        message.AppendLine(String.Format(id.User == null ? "Пользователь неавторизован" : "Пользователь авторизован"));
+        message.AppendLine(String.Format(order.User == null ? "Пользователь неавторизован" : "Пользователь авторизован"));
         message.AppendLine();
 
-        message.AppendLine(String.Format("Комментарий: {0}", order.Comment));
+        message.AppendLine(String.Format("Комментарий: {0}", orderDto.Comment));
 
 
 
 
         message.AppendLine();
-        message.AppendLine(String.Format("Замена {0}:", GetChangeModeName(order.ChangeMode)));
+        message.AppendLine(String.Format("Замена {0}:", GetChangeModeName(orderDto.ChangeMode)));
 
         message.AppendLine();
 
-        if (order.Code != "")
+        if (orderDto.Code != "")
         {
             message.AppendLine("* * * * * * * * * * * * * *");
-            message.AppendLine(String.Format("Промо-код: {0}", order.Code));
+            message.AppendLine(String.Format("Промо-код: {0}", orderDto.Code));
             message.AppendLine("* * * * * * * * * * * * * *");
         }
 
         message.AppendLine("__________________");
         //message.AppendLine(String.Format("Ссылка на заказ: https://mgmt.avoska-dostavka.ru/{0}", id.Id));
-        message.AppendLine(String.Format("Ссылка на заказ: https://mgmt.avoska-dostavka.ru/purchase?id={0}", id.Id));
+        message.AppendLine(String.Format("Ссылка на заказ: https://mgmt.avoska-dostavka.ru/purchase?id={0}", order.Id));
 
 
         //var message = "Заказ на адрес " + order.Address;
-        client.SendTextMessageAsync("-1001763086620", message.ToString());
+        client.SendTextMessageAsync("-1001763086620", message.ToString(), ParseMode.Html);
     }
     private async void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
     {
         var message = messageEventArgs.Message;
         if (message?.Type == MessageType.Text)
         {
-            await client.SendTextMessageAsync(message.Chat.Id, message.Text);
+            await client.SendTextMessageAsync(message.Chat.Id, message.Text, ParseMode.Html);
         }
     }
 

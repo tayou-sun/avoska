@@ -74,6 +74,8 @@ public class ProductRepository : IProductRepository
 
         var a = appDbContext.Products
 .Include(x => x.Tags)
+.ThenInclude(x => x.Parent)
+.ThenInclude(x => x.Store)
 //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
 .Where(x => x.Tags.Select(x => x.Id).Contains(tagId) && x.IsAvailable).ToList();
 
@@ -85,23 +87,27 @@ public class ProductRepository : IProductRepository
             ImageUrl = x.ImageUrl,
             TagName = x.Tags[0].Name,
             TagId = x.Tags[0].Id,
-            Id = x.Id
+            Store = x.Tags[0].Parent?.Store != null
+                ? new StoreDto() { Id = x.Tags[0].Parent?.Store.Id, Name = x.Tags[0].Parent?.Store.Name }
+                : null,
+            Id = x.Id,
+            Options = x.Options
         })
         .OrderBy(x => x.Price)
-        .Skip(page*20)
+        .Skip(page * 20)
         .Take(20)
         .ToList();
 
-       /*  if (mode == 1)
-        {
-            b = b.OrderBy(x => x.Price).ToList();
-        }
-        else if (mode == 2)
-        {
-            b = b.OrderByDescending(x => x.Price).ToList();
-        }
- */
-        
+        /*  if (mode == 1)
+         {
+             b = b.OrderBy(x => x.Price).ToList();
+         }
+         else if (mode == 2)
+         {
+             b = b.OrderByDescending(x => x.Price).ToList();
+         }
+  */
+
 
         return b;
     }
@@ -126,21 +132,22 @@ public class ProductRepository : IProductRepository
 
     public ProductDto GetDetailById(int id)
     {
-        var product = appDbContext.Products.Include(x => x.Features).Include(x => x.Tags).ThenInclude(x=>x.Parent).FirstOrDefault(x => x.Id == id);
+        var product = appDbContext.Products.Include(x => x.Features).Include(x => x.Tags).ThenInclude(x => x.Parent).FirstOrDefault(x => x.Id == id);
 
-            var productDto = new ProductDto() {
-                Name = product.Name, 
-                Price = product.Price, 
-                ImageUrl = product.ImageUrl, 
-                TagName = product.Tags[0].Name, 
-                TagId = product.Tags[0].Id, 
-                Id = product.Id, 
-                Parent =  product.Tags[0].Parent.Id,
-                NewPrice = product.NewPrice,
-                Options = product.Options,
+        var productDto = new ProductDto()
+        {
+            Name = product.Name,
+            Price = product.Price,
+            ImageUrl = product.ImageUrl,
+            TagName = product.Tags[0].Name,
+            TagId = product.Tags[0].Id,
+            Id = product.Id,
+            Parent = product.Tags[0].Parent.Id,
+            NewPrice = product.NewPrice,
+            Options = product.Options,
 
-                Description = product.Description  
-                };
+            Description = product.Description
+        };
         return productDto;
     }
 
@@ -164,7 +171,7 @@ public class ProductRepository : IProductRepository
         })
         .ToList();
 
-         b = b.OrderByDescending(x => x.Price).ToList();
+        b = b.OrderByDescending(x => x.Price).ToList();
 
         return b;
     }

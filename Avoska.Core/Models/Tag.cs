@@ -16,4 +16,6 @@ public class Tag
     public int? OrderId { get; set; }
     public List<Product> Products {get;set;}
     public bool IsVisible { get; set; }
+
+    public Store Store { get; set; }
 }

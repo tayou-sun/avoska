@@ -15,6 +15,7 @@ public class ProductDto
     public string TagName { get; set; }
     public string Description { get; set; }
     public int TagId { get; set; }
+    public StoreDto Store {get;set;}
     public List<Feature> Features { get; set; }
     public string ImageUrl { get; set; }
 
