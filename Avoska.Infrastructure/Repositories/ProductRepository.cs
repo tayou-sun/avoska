@@ -132,7 +132,7 @@ public class ProductRepository : IProductRepository
 
     public ProductDto GetDetailById(int id)
     {
-        var product = appDbContext.Products.Include(x => x.Features).Include(x => x.Tags).ThenInclude(x => x.Parent).FirstOrDefault(x => x.Id == id);
+        var product = appDbContext.Products.Include(x => x.Features).Include(x => x.Tags).ThenInclude(x => x.Parent).ThenInclude(x=>x.Store).FirstOrDefault(x => x.Id == id);
 
         var productDto = new ProductDto()
         {
@@ -145,7 +145,10 @@ public class ProductRepository : IProductRepository
             Parent = product.Tags[0].Parent.Id,
             NewPrice = product.NewPrice,
             Options = product.Options,
-
+           Store = product.Tags[0].Parent?.Store != null
+                ? new StoreDto() { Id = product.Tags[0].Parent?.Store.Id, Name = product.Tags[0].Parent?.Store.Name }
+                : null,
+           
             Description = product.Description
         };
         return productDto;
