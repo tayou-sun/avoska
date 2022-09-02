@@ -77,9 +77,26 @@ public class ProductRepository : IProductRepository
 .ThenInclude(x => x.Parent)
 .ThenInclude(x => x.Store)
 //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
-.Where(x => x.Tags.Select(x => x.Id).Contains(tagId) && x.IsAvailable).ToList();
+.Where(x => x.Tags.Select(x => x.Id).Contains(tagId) && x.IsAvailable).Select(x => new ProductDto()
+        {
+            Name = x.Name,
+            Price = x.Price,
+            NewPrice = x.NewPrice,
+            ImageUrl = x.ImageUrl,
+            TagName = x.Tags[0].Name,
+            TagId = x.Tags[0].Id,
+            Store = x.Tags[0].Parent.Store != null
+                ? (new StoreDto() { Id = x.Tags[0].Parent.Store.Id, Name = x.Tags[0].Parent.Store.Name })
+                : null,
+            Id = x.Id,
+            Options = x.Options
+        })
+        .OrderBy(x => x.Price)
+        .Skip(page * 20)
+        .Take(20).
+        ToList();
 
-        var b = a.Select(x => new ProductDto()
+       /*  var b = a.Select(x => new ProductDto()
         {
             Name = x.Name,
             Price = x.Price,
@@ -96,7 +113,7 @@ public class ProductRepository : IProductRepository
         .OrderBy(x => x.Price)
         .Skip(page * 20)
         .Take(20)
-        .ToList();
+        .ToList(); */
 
         /*  if (mode == 1)
          {
@@ -109,7 +126,7 @@ public class ProductRepository : IProductRepository
   */
 
 
-        return b;
+        return a;
     }
 
 
