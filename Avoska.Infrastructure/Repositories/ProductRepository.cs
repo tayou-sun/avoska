@@ -78,42 +78,50 @@ public class ProductRepository : IProductRepository
 .ThenInclude(x => x.Store)
 //.Where(x => x.Tags.Select(x => x.Id).Contains(tagId))
 .Where(x => x.Tags.Select(x => x.Id).Contains(tagId) && x.IsAvailable).Select(x => new ProductDto()
-        {
-            Name = x.Name,
-            Price = x.Price,
-            NewPrice = x.NewPrice,
-            ImageUrl = x.ImageUrl,
-            TagName = x.Tags[0].Name,
-            TagId = x.Tags[0].Id,
-            Store = x.Tags[0].Parent.Store != null
-                ? (new StoreDto() { Id = x.Tags[0].Parent.Store.Id, Name = x.Tags[0].Parent.Store.Name })
+{
+    Name = x.Name,
+    Price = x.Price,
+    NewPrice = x.NewPrice,
+    ImageUrl = x.ImageUrl,
+    TagName = x.Tags[0].Name,
+    TagId = x.Tags[0].Id,
+    Store = x.Tags[0].Parent.Store != null
+                ? (new StoreDto()
+                {
+                    Id = x.Tags[0].Parent.Store.Id,
+                    Name = x.Tags[0].Parent.Store.Name,
+                    DeliveryPrice = x.Tags[0].Parent.Store.DeliveryPrice,
+                    MinSum = x.Tags[0].Parent.Store.MinSum,
+                    StopTime = x.Tags[0].Parent.Store.StopTime,
+                    StartTime = x.Tags[0].Parent.Store.StartTime,
+                })
                 : null,
-            Id = x.Id,
-            Options = x.Options
-        })
+    Id = x.Id,
+    Options = x.Options
+})
         .OrderBy(x => x.Price)
         .Skip(page * 20)
         .Take(20).
         ToList();
 
-       /*  var b = a.Select(x => new ProductDto()
-        {
-            Name = x.Name,
-            Price = x.Price,
-            NewPrice = x.NewPrice,
-            ImageUrl = x.ImageUrl,
-            TagName = x.Tags[0].Name,
-            TagId = x.Tags[0].Id,
-            Store = x.Tags[0].Parent?.Store != null
-                ? new StoreDto() { Id = x.Tags[0].Parent?.Store.Id, Name = x.Tags[0].Parent?.Store.Name }
-                : null,
-            Id = x.Id,
-            Options = x.Options
-        })
-        .OrderBy(x => x.Price)
-        .Skip(page * 20)
-        .Take(20)
-        .ToList(); */
+        /*  var b = a.Select(x => new ProductDto()
+         {
+             Name = x.Name,
+             Price = x.Price,
+             NewPrice = x.NewPrice,
+             ImageUrl = x.ImageUrl,
+             TagName = x.Tags[0].Name,
+             TagId = x.Tags[0].Id,
+             Store = x.Tags[0].Parent?.Store != null
+                 ? new StoreDto() { Id = x.Tags[0].Parent?.Store.Id, Name = x.Tags[0].Parent?.Store.Name }
+                 : null,
+             Id = x.Id,
+             Options = x.Options
+         })
+         .OrderBy(x => x.Price)
+         .Skip(page * 20)
+         .Take(20)
+         .ToList(); */
 
         /*  if (mode == 1)
          {
@@ -149,7 +157,7 @@ public class ProductRepository : IProductRepository
 
     public ProductDto GetDetailById(int id)
     {
-        var product = appDbContext.Products.Include(x => x.Features).Include(x => x.Tags).ThenInclude(x => x.Parent).ThenInclude(x=>x.Store).FirstOrDefault(x => x.Id == id);
+        var product = appDbContext.Products.Include(x => x.Features).Include(x => x.Tags).ThenInclude(x => x.Parent).ThenInclude(x => x.Store).FirstOrDefault(x => x.Id == id);
 
         var productDto = new ProductDto()
         {
@@ -162,10 +170,17 @@ public class ProductRepository : IProductRepository
             Parent = product.Tags[0].Parent.Id,
             NewPrice = product.NewPrice,
             Options = product.Options,
-           Store = product.Tags[0].Parent?.Store != null
-                ? new StoreDto() { Id = product.Tags[0].Parent?.Store.Id, Name = product.Tags[0].Parent?.Store.Name }
+            Store = product.Tags[0].Parent?.Store != null
+                ? new StoreDto() {
+                     Id = product.Tags[0].Parent.Store.Id,
+                    Name = product.Tags[0].Parent.Store.Name,
+                    DeliveryPrice = product.Tags[0].Parent.Store.DeliveryPrice,
+                    MinSum = product.Tags[0].Parent.Store.MinSum,
+                    StopTime = product.Tags[0].Parent.Store.StopTime,
+                    StartTime = product.Tags[0].Parent.Store.StartTime,
+                 }
                 : null,
-           
+
             Description = product.Description
         };
         return productDto;

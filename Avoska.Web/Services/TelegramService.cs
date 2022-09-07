@@ -87,7 +87,7 @@ public class TelegramService
             index++;
         } */
 
-        message.AppendLine(String.Format("Итого: {0} руб", summ));
+        message.AppendLine(String.Format("С клиента: {0} руб", orderDto.Total));
         message.AppendLine(String.Format("Скидка: {0} руб", sale));
 
         message.AppendLine();

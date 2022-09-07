@@ -101,7 +101,8 @@ public class OrderRepository : IOrderRepository
                 Count = y.Count,
                 Name = y.Name,
                 Price = y.Price,
-                Image = y.ImageUrl
+                Image = y.ImageUrl,
+                NewPrice =y.NewPrice
 
             }).ToList();
 

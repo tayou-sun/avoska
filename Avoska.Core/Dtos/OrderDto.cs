@@ -17,7 +17,7 @@ public class OrderDto
     public string Comment { get; set; }
 
     public DateTime CreateDate { get; set; }
-
+    public int? Total { get; set; }
 
     public string Instagram { get; set; }
     public int? DeliveryMode { get; set; }
@@ -26,6 +26,6 @@ public class OrderDto
 
     public string UserLogin { get; set; }
 
-    public string Status {get;set;}
+    public string Status { get; set; }
 
 }

@@ -47,14 +47,14 @@ namespace Avoska.Web
                             ValidateIssuer = true,
                             // строка, представляющая издателя
                             ValidIssuer = AuthOptions.ISSUER,
- 
+
                             // будет ли валидироваться потребитель токена
                             ValidateAudience = true,
                             // установка потребителя токена
                             ValidAudience = AuthOptions.AUDIENCE,
                             // будет ли валидироваться время существования
                             ValidateLifetime = true,
- 
+
                             // установка ключа безопасности
                             IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                             // валидация ключа безопасности
@@ -64,22 +64,23 @@ namespace Avoska.Web
 
             services.AddDbContext<AppDbContext>(options =>
               options.UseNpgsql(Configuration.GetSection(nameof(ConnectionStrings)).GetSection("NpgSql").Value));
-              
-/*  services.AddIdentity<User, IdentityRole>(opts =>{
-     opts.Password.RequireDigit = false;
-     opts.Password.RequireLowercase = false;
-     opts.Password.RequireUppercase = false;
-     opts.Password.RequiredLength = 1;
-     opts.Password.RequireNonAlphanumeric = false;
- })
-                .AddEntityFrameworkStores<AppDbContext>(); */
-                
+
+            /*  services.AddIdentity<User, IdentityRole>(opts =>{
+                 opts.Password.RequireDigit = false;
+                 opts.Password.RequireLowercase = false;
+                 opts.Password.RequireUppercase = false;
+                 opts.Password.RequiredLength = 1;
+                 opts.Password.RequireNonAlphanumeric = false;
+             })
+                            .AddEntityFrameworkStores<AppDbContext>(); */
+
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
-             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IStoreRepository, StoreRepository>();
-             services.AddScoped<IStatusRepository, StatusRepository>();
+            services.AddScoped<IStatusRepository, StatusRepository>();
+            services.AddScoped<IParametersRepository, ParametersRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Avoska.Web", Version = "v1" });
