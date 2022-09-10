@@ -21,23 +21,23 @@ namespace Avoska.Web.Controllers
         private readonly ILogger<ProductController> _logger;
         private readonly IProductRepository _productRepository;
         private readonly IStatusRepository _statusRepository;
-        public StatusController(ILogger<ProductController> logger,IStatusRepository statusRepository)
+        public StatusController(ILogger<ProductController> logger, IStatusRepository statusRepository)
         {
             _logger = logger;
-        //  _productRepository = productRepository;
+            //  _productRepository = productRepository;
             _statusRepository = statusRepository;
         }
 
 
-/* 
-        [HttpGet("detail")]
-        public ProductDto GetDetailById(int id)
-        {
-            //_productRepository.Create(null);
-            var products = _productRepository.GetDetailById(id);
-            return products;
-        }
- */
+        /* 
+                [HttpGet("detail")]
+                public ProductDto GetDetailById(int id)
+                {
+                    //_productRepository.Create(null);
+                    var products = _productRepository.GetDetailById(id);
+                    return products;
+                }
+         */
         /* [HttpGet("current")]
         public ProductDto GetCurrentOrderForUser(int id)
         {
@@ -55,6 +55,29 @@ namespace Avoska.Web.Controllers
             //_productRepository.Create(null);
             var products = _statusRepository.GetDetailById(phone);
             return products;
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        public bool SetStatus([FromBody] StatusPost s)
+        {
+            var result = true;
+
+            try
+            {
+                //_productRepository.Create(null);
+                var res = _statusRepository.SetStatus(s.OrderId, s.StatusId);
+                var bot = new TelegramService();
+                bot.SendCancelMessage(res);
+            }
+            catch (Exception e)
+            {
+                result = false;
+            }
+
+            return result;
+            //sreturn products;
         }
     }
 }

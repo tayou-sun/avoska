@@ -93,7 +93,8 @@ public class OrderRepository : IOrderRepository
             a.Id = x.Id;
             a.Address = x.Address;
             a.CreateDate = x.CreateDate;
-            a.Status = x.StatusOrders.OrderByDescending(y => y.Id)?.FirstOrDefault() != null ? x.StatusOrders.OrderByDescending(y => y.Id)?.FirstOrDefault().Status.Name
+            a.StatusId = x.StatusOrders.OrderByDescending(y => y.Id)?.FirstOrDefault()?.Status?.Id;
+            a.Status = x.StatusOrders.OrderByDescending(y => y.Id)?.FirstOrDefault() != null ? x.StatusOrders.OrderByDescending(y => y.Id)?.FirstOrDefault().Status?.Name
             : "Выполнен";
             a.Products = x.Products.Select(y => new OrderProductDto
             {
@@ -102,7 +103,7 @@ public class OrderRepository : IOrderRepository
                 Name = y.Name,
                 Price = y.Price,
                 Image = y.ImageUrl,
-                NewPrice =y.NewPrice
+                NewPrice = y.NewPrice
 
             }).ToList();
 

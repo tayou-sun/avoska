@@ -25,11 +25,32 @@ public class StatusRepository : IStatusRepository
 
         if (orders.Count == 0)
             return null;
-            
+
         var sortedOrders = orders?.OrderByDescending(x => x.Id).ToList().First();
 
 
-        return  sortedOrders.Status == null || sortedOrders.Status.Id == 4 ? null : sortedOrders.Status.Name;
+        return sortedOrders.Status == null || sortedOrders.Status.Id == 4 ? null : sortedOrders.Status.Name;
     }
+/*     void SetStatus(int orderId, int statusId)
+    {
+        appDbContext.StatusOrder.Add(new StatusOrder(){
+            Status = appDbContext.Status.FirstOrDefault(x=>x.Id == statusId),
+            CreateDate = DateTime.Now,
+            Order = appDbContext.Orders.FirstOrDefault(x=>x.Id == orderId)
+        });
+        appDbContext.SaveChanges();
+    } */
 
+    Order IStatusRepository.SetStatus(int orderId, int statusId)
+    {
+        var order = appDbContext.Orders.FirstOrDefault(x=>x.Id == orderId);
+           appDbContext.StatusOrder.Add(new StatusOrder(){
+            Status = appDbContext.Status.FirstOrDefault(x=>x.Id == statusId),
+            CreateDate = DateTime.Now,
+            Order = order
+        });
+        appDbContext.SaveChanges();
+
+        return order;
+    }
 }

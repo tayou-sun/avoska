@@ -57,9 +57,10 @@ public class TelegramService
             var index = 1;
             if (group.Key != null)
                 message.AppendLine("<b>" + group.Key + "</b>");
-                else {
-                     message.AppendLine("<b>Супермаркет</b>");
-                }
+            else
+            {
+                message.AppendLine("<b>Супермаркет</b>");
+            }
             // message.AppendLine(group.Key);
             foreach (var item in group)
             {
@@ -72,20 +73,20 @@ public class TelegramService
                     message.AppendLine(String.Format("Доп: <i>{0}</i> ", item.Info));
                 index++;
             }
-              message.AppendLine("<b> </b>");
+            message.AppendLine("<b> </b>");
         }
 
-      /*   foreach (var item in orderDto.Products)
-        {
-            var res = ((item.NewPrice != 0 ? item.NewPrice : item.Price) + item.AdditionalSum) * item.Count;
-            summ += res;
+        /*   foreach (var item in orderDto.Products)
+          {
+              var res = ((item.NewPrice != 0 ? item.NewPrice : item.Price) + item.AdditionalSum) * item.Count;
+              summ += res;
 
-            sale += item.NewPrice != 0 ? item.Price - item.NewPrice : 0;
-            message.AppendLine(String.Format("{0}. {1} x {2} + {3} [{4} руб]", index, item.Name, item.Count, item.AdditionalSum, res));
-            if (item.Info != "")
-                message.AppendLine(String.Format("Доп: {0}", item.Info));
-            index++;
-        } */
+              sale += item.NewPrice != 0 ? item.Price - item.NewPrice : 0;
+              message.AppendLine(String.Format("{0}. {1} x {2} + {3} [{4} руб]", index, item.Name, item.Count, item.AdditionalSum, res));
+              if (item.Info != "")
+                  message.AppendLine(String.Format("Доп: {0}", item.Info));
+              index++;
+          } */
 
         message.AppendLine(String.Format("С клиента: {0} руб", orderDto.Total));
         message.AppendLine(String.Format("Скидка: {0} руб", sale));
@@ -127,6 +128,22 @@ public class TelegramService
         {
             await client.SendTextMessageAsync(message.Chat.Id, message.Text, ParseMode.Html);
         }
+    }
+
+
+    public void SendCancelMessage(Order order)
+    {
+        var message = new StringBuilder();
+
+        message.AppendLine(String.Format("ЗАКАЗ <b>{0}</b> ОТМЕНЕН!", order.Id));
+
+        message.AppendLine(String.Format("Имя: {0}", order.Name));
+        message.AppendLine(String.Format("Телефон: {0}", order.Phone));
+        message.AppendLine(String.Format("Адрес: {0}", order.Address));
+
+        message.AppendLine();
+        //var message = "Заказ на адрес " + order.Address;
+        client.SendTextMessageAsync("-1001763086620", message.ToString(), ParseMode.Html);
     }
 
 
