@@ -15,24 +15,25 @@ public class UserRepository : IUserRepository
     public User Create(string phone, string password)
     {
         var person = appDbContext.Users.FirstOrDefault(x => x.Phone == phone);
-        
-        if (person == null ){
-        var u = new User();
-        u.Phone = phone;
-        u.Password = password;
 
-        appDbContext.Users.Add(u);
-        appDbContext.SaveChanges();
+        if (person == null)
+        {
+            var u = new User();
+            u.Phone = phone;
+            u.Password = password;
 
-        return u;
+            appDbContext.Users.Add(u);
+            appDbContext.SaveChanges();
+
+            return u;
         }
         return null;
 
     }
 
-    public User Get(string phone, string password)
+    public User Get(string phone)
     {
-        var person = appDbContext.Users.FirstOrDefault(x => x.Phone == phone && x.Password == password);
+        var person = appDbContext.Users.FirstOrDefault(x => x.Phone == phone);
         return person;
     }
 
@@ -45,11 +46,37 @@ public class UserRepository : IUserRepository
             result.Phone = user.Phone;
             result.Address = user.Address;
 
-            
+
             appDbContext.SaveChanges();
 
-           
+
         }
-         return result;
+        return result;
+    }
+
+
+    void IUserRepository.SaveToken(UserVerify user)
+    {
+        try
+        {
+            appDbContext.UserVerifies.Add(user);
+            appDbContext.SaveChanges();
+        }
+        catch (Exception e)
+        {
+            var a = 1;
+        }
+    }
+
+    UserVerify IUserRepository.Verify(User1 user)
+    {
+        var res = appDbContext.UserVerifies.FirstOrDefault(x => x.Code == user.Password && x.Phone == user.Phone && x.IsVerify == false);
+
+        if (res != null)
+        {
+            res.IsVerify = true;
+            appDbContext.SaveChanges();
+        }
+        return res;
     }
 }

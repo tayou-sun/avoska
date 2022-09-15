@@ -5,6 +5,6 @@ public class User1
 {
     public string Phone { get; set; }
 
-    public string Password { get; set; }
+    public long Password { get; set; }
 
 }

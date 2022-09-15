@@ -12,6 +12,8 @@ namespace CStuffControl.Infrastructure
         {
             modelBuilder.Entity<Parameters>()
                 .HasNoKey();
+
+           
         }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -30,6 +32,7 @@ namespace CStuffControl.Infrastructure
         public DbSet<Status> Status { get; set; }
         public DbSet<Parameters> Parameters { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<UserVerify> UserVerifies { get; set; }
         /*  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
            => optionsBuilder.UseNpgsql("Server=127.0.0.1;Port=5432;Userid=postgres;Password=1234;Pooling=false;MinPoolSize=1;MaxPoolSize=20;Timeout=15;SslMode=Disable;Database=postgres;");
     */

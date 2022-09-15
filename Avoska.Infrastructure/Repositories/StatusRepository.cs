@@ -16,7 +16,7 @@ public class StatusRepository : IStatusRepository
 
     public string GetDetailById(string phone)
     {
-        var preparePhone = phone.Replace(" ", "+");
+        var preparePhone = phone;//.Replace(" ", "+");
         var orders = this.appDbContext.StatusOrder
         .Include(x => x.Order)
         .ThenInclude(x => x.User)
