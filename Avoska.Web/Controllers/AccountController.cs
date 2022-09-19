@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using RestSharp;
+using System.Text;
 
 namespace TokenApp.Controllers
 {
@@ -249,36 +250,117 @@ namespace TokenApp.Controllers
             return Json(response);
         }
 
+        private readonly Random _random = new Random();
 
-
-
-        [HttpGet("code")]
-        public async Task<SmsResponce> GetCodeAsync(string number)
+        // Generates a random number within a range.      
+        public int RandomNumber(int min, int max)
         {
+            return _random.Next(min, max);
+        }
+        public string RandomPassword()
+        {
+            var passwordBuilder = new StringBuilder();
 
-            var client = new RestClient($"https://sms.ru/code/call?phone={number}&ip=-1&api_id=9281F0C8-148F-DDA7-ED8C-42A0A6218A68");
+            // 4-Letters lower case   
+            // passwordBuilder.Append(RandomString(4, true));
+
+            // 4-Digits between 1000 and 9999  
+            passwordBuilder.Append(RandomNumber(1000, 9999));
+
+            // 2-Letters upper case  
+            //passwordBuilder.Append(RandomString(2));
+            return passwordBuilder.ToString();
+        }
+
+        private bool RandomString(int v1, bool v2)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public async Task<bool> CheckIs(string phone)
+        {
+            /*   var res = true;
+
+               userVerify = _orderRepository.GetCurrentUserVerify(phone);
+
+              var userVerify1 = _orderRepository.GetLastMessage(phone);
+
+              if (userVerify == null)
+                  return true; */
+
+
+            var userVerify = _orderRepository.GetCurrentUserVerify(phone);
+
+            var client = new RestClient($"https://gate.smsaero.ru/v2/sms/status?id={userVerify.MessageId}");
 
             var request = new RestRequest();
-            //request.AddHeader("Cookie", "dev_id=C5499A72-B294-D150-3947-90543939044B");
+            request.AddHeader("Authorization", "Basic ZXVnZW5lLm1hdnJpbkBnbWFpbC5jb206cFhxa3EyZGNEWU5FTHc1bGwxZG42SVE1VFY4WQ==");
+            request.AddHeader("Cookie", "_csrf=a55c41aaa56810c8f36d6486d8ca0e0f964c0ea508c8b75bcf75acc2c300f83da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22cakAcz5isCTO4vU4CJ7jvEdRSKi7yjAC%22%3B%7D");
             var response = await client.ExecuteAsync<SmsResponce>(request);
-            Console.WriteLine(response.Content);
+
+            if ((SmsStatus)response.Data.data.status == SmsStatus.canceled || (SmsStatus)response.Data.data.status == SmsStatus.NotDelivered)
+                return true;
 
 
-            /*   return response.Data; */
 
-            if (response.Data.status != "ERROR")
-            {
-                var v = new UserVerify()
+            return false;
+        }
+
+        [HttpGet("code")]
+        public async Task<SmsResultDto> GetCodeAsync(string number)
+        {
+            // var res = await CheckIfSenAvailable(number);
+            var isSendAvailvale = _orderRepository.GetLastMessage(number);
+
+            if (isSendAvailvale == 0)
+                return new SmsResultDto()
                 {
-                    Phone = number,
-                    Code = response.Data.code,
-                    IsVerify = false
+                    status = "ERROR",
+                    status_text = "Лимит исчерпан, повторите через 10 минут"
+                    //code = 1234
                 };
-                _orderRepository.SaveToken(v);
-            };
-            return new SmsResponce()
+
+
+            //var count = _orderRepository.CheckIsSendAvailale(number);
+            var status = "OK";
+            var errorText = "";
+            /*  if (res)
+             { */
+            var code = RandomPassword();
+
+
+            var client = new RestClient($"https://gate.smsaero.ru/v2/sms/send?number={number}&text=Код для входа в Авоську: {code}&sign=SMS Aero");
+
+            var request = new RestRequest();
+            request.AddHeader("Authorization", "Basic ZXVnZW5lLm1hdnJpbkBnbWFpbC5jb206cFhxa3EyZGNEWU5FTHc1bGwxZG42SVE1VFY4WQ==");
+            request.AddHeader("Cookie", "_csrf=ac1625255f575a1b1d8b272ab117bff0d5379cc7a17fb42ba25f7b7889e1731da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%224071YjtXfAc67YdnoYwJ_nd_k_DQ2n_M%22%3B%7D");
+            var response = await client.ExecuteAsync<SmsResponce>(request);
+
+
+
+
+
+            var v = new UserVerify()
             {
-                status = response.Data.status,
+                Phone = number,
+                Code = long.Parse(code),
+                IsVerify = false,
+                CreateDate = DateTime.Now,
+                MessageId = response.Data.data.id
+
+            };
+            _orderRepository.SaveToken(v);
+            /*  } */
+            /*  else
+             {
+                 status = "ERROR";
+                 errorText = "Неверный код";
+             } */
+            return new SmsResultDto()
+            {
+                status = status,
+                status_text = errorText
                 //code = 1234
             };
         }

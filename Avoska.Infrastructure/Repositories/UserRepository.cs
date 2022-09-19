@@ -55,6 +55,7 @@ public class UserRepository : IUserRepository
     }
 
 
+
     void IUserRepository.SaveToken(UserVerify user)
     {
         try
@@ -78,5 +79,44 @@ public class UserRepository : IUserRepository
             appDbContext.SaveChanges();
         }
         return res;
+    }
+
+
+    private bool isValisDatetime(DateTime d)
+    {
+        TimeSpan varTime = (DateTime)DateTime.Now - (DateTime)d;
+        double fractionalMinutes = varTime.TotalMinutes;
+        int wholeMinutes = (int)fractionalMinutes;
+        return wholeMinutes >= 10;
+    }
+
+    UserVerify IUserRepository.GetCurrentUserVerify(string phone)
+    {
+        var res = appDbContext.UserVerifies.OrderByDescending(x => x.Id)?.Where(x => x.Phone == phone)?.FirstOrDefault();
+
+        return res;
+    }
+
+    int? IUserRepository.GetLastMessage(string phone)
+    {
+
+        try
+        {
+            var a = appDbContext.UserVerifies?.OrderByDescending(x => x.Id)?.Where(x => x.Phone == phone).Take(3).ToList().OrderBy(x=>x.CreateDate);
+
+            var b = a.FirstOrDefault();
+            
+            if (b == null)
+            return 1;
+
+            
+            var c =  isValisDatetime(b.CreateDate);
+            return b != null  && c == true ? 1 : 0;
+        }
+        catch (Exception e)
+        {
+
+        }
+        return 0;
     }
 }
