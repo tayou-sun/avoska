@@ -17,9 +17,9 @@ namespace Avoska.Web
     {
         public static void Main(string[] args)
         {
-            // CreateWebHostBuilder(args).Build().Run();
+             CreateWebHostBuilder(args).Build().Run();
 
-            using MeterProvider meterProvider = Sdk.CreateMeterProviderBuilder()
+    /*         using MeterProvider meterProvider = Sdk.CreateMeterProviderBuilder()
                 .AddMeter("HatCo.HatStore")
                 .AddPrometheusExporter(opt =>
                 {
@@ -28,13 +28,15 @@ namespace Avoska.Web
                 })
                 .Build();
 
-            Console.WriteLine("Press any key to exit");
-            while (!Console.KeyAvailable)
-            {
-                // Pretend our store has a transaction each second that sells 4 hats
-                Thread.Sleep(1000);
-                s_hatsSold.Add(4);
-            }
+            CreateWebHostBuilder(args).Build().Run(); */
+
+            // Console.WriteLine("Press any key to exit");
+            /*    while (!Console.KeyAvailable)
+               {
+                   // Pretend our store has a transaction each second that sells 4 hats
+                   Thread.Sleep(1000);
+                   s_hatsSold.Add(4);
+               } */
         }
 
         static Meter s_meter = new Meter("HatCo.HatStore", "1.0.0");

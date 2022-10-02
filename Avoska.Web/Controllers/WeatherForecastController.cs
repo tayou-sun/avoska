@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Prometheus;
 
 namespace Avoska.Web.Controllers
 {
@@ -11,6 +13,8 @@ namespace Avoska.Web.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+         Counter counter = Metrics.CreateCounter("my_counter","Metrics counter");
+
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -27,6 +31,7 @@ namespace Avoska.Web.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+                counter.Inc(); // Increment the counter
             var rng = new Random();
             var a = _productRepo.GetProducts();
             

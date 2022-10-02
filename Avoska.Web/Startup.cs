@@ -18,6 +18,7 @@ using StuffControl.Web.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using TokenApp;
+using Prometheus;
 
 namespace Avoska.Web
 {
@@ -33,6 +34,8 @@ namespace Avoska.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
             services.Configure<ConnectionStrings>(Configuration.GetSection(nameof(ConnectionStrings)));
 
             services.AddControllers();
@@ -99,6 +102,11 @@ namespace Avoska.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            // Export metrics to Prometheus
+            // https://localhost:5001/metrics
+            app.UseMetricServer(url: "/metrics");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -106,8 +114,8 @@ namespace Avoska.Web
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Avoska.Web v1"));
             }
 
-        
-        
+
+
             app.UseHttpsRedirection();
 
             app.UseAuthentication();    // аутентификация
@@ -116,9 +124,10 @@ namespace Avoska.Web
             app.UseRouting();
             app.UseCors("MyPolicy");
             app.UseAuthorization();
-
+            app.UseHttpMetrics();
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapMetrics();
                 endpoints.MapControllers();
             });
         }
