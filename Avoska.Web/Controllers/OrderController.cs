@@ -11,6 +11,8 @@ using VkNet.Model;
 using VkNet.Enums.Filters;
 using VkNet.Model.RequestParams;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics.Metrics;
+using Prometheus;
 
 namespace Avoska.Web.Controllers
 {
@@ -18,13 +20,14 @@ namespace Avoska.Web.Controllers
     [Route("[controller]")]
     public class OrderController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+
+        Counter order_counter = Metrics.CreateCounter("create_order_count", "Create order");
+        Counter get_order_count = Metrics.CreateCounter("get_order_count", "Get orders");
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IOrderRepository _orderRepository;
+
+
         public OrderController(ILogger<WeatherForecastController> logger, IOrderRepository orderRepository)
         {
             _logger = logger;
@@ -32,11 +35,9 @@ namespace Avoska.Web.Controllers
         }
 
 
-
-
         public int Post(OrderDto order)
         {
-            
+            order_counter.Inc();
             var res = _orderRepository.Create(order);
 
             var user = res.User;
@@ -66,6 +67,7 @@ namespace Avoska.Web.Controllers
         [HttpGet("a")]
         public List<OrderDto> PostMessage(string login)
         {
+            get_order_count.Inc();
             //var bot = new TelegramService();
             var a = _orderRepository.GetOrdersByUserPhone(login);
 

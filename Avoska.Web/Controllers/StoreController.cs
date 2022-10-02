@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Prometheus;
 using Telegram.Bot;
 
 namespace Avoska.Web.Controllers
@@ -11,12 +13,8 @@ namespace Avoska.Web.Controllers
     [ApiController]
     [Route("[controller]")]
     public class StoreController : ControllerBase
-    {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
+    { 
+        
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IStoreRepository _productRepo;
         public StoreController(ILogger<WeatherForecastController> logger,IStoreRepository roomRepository)
