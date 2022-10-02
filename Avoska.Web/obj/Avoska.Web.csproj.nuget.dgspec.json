@@ -190,6 +190,10 @@
               "target": "Package",
               "version": "[5.0.10, )"
             },
+            "OpenTelemetry.Exporter.Prometheus": {
+              "target": "Package",
+              "version": "[1.2.0-beta1, )"
+            },
             "RestSharp": {
               "target": "Package",
               "version": "[107.3.0, )"
@@ -205,6 +209,10 @@
             "VkNet": {
               "target": "Package",
               "version": "[1.68.0, )"
+            },
+            "prometheus-net": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             }
           },
           "imports": [

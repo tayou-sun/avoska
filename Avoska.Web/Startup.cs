@@ -106,6 +106,8 @@ namespace Avoska.Web
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Avoska.Web v1"));
             }
 
+        
+        
             app.UseHttpsRedirection();
 
             app.UseAuthentication();    // аутентификация
