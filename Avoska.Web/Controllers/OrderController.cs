@@ -42,7 +42,7 @@ namespace Avoska.Web.Controllers
 
             var user = res.User;
             var bot = new TelegramService();
-            bot.SendMessage(order, res);
+            bot.SendMessageAsync(order, res);
 
 
             var client = new RestClient("http://api.callmebot.com/start.php?source=web&user=@shainurova_e&text=hello%20everyone&lang=en-US-Standard-B");
