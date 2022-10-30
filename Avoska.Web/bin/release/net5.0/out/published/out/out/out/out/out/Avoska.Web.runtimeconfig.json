@@ -7,10 +7,7 @@
     },
     "configProperties": {
       "System.GC.Server": true,
-<<<<<<< HEAD
-=======
       "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,
->>>>>>> 89e46d3db29ea6e2818738d5e47f84fb704e480c
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": false
     }
   }
