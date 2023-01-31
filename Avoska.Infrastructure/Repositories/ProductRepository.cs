@@ -171,14 +171,15 @@ public class ProductRepository : IProductRepository
             NewPrice = product.NewPrice,
             Options = product.Options,
             Store = product.Tags[0].Parent?.Store != null
-                ? new StoreDto() {
-                     Id = product.Tags[0].Parent.Store.Id,
+                ? new StoreDto()
+                {
+                    Id = product.Tags[0].Parent.Store.Id,
                     Name = product.Tags[0].Parent.Store.Name,
                     DeliveryPrice = product.Tags[0].Parent.Store.DeliveryPrice,
                     MinSum = product.Tags[0].Parent.Store.MinSum,
                     StopTime = product.Tags[0].Parent.Store.StopTime,
                     StartTime = product.Tags[0].Parent.Store.StartTime,
-                 }
+                }
                 : null,
 
             Description = product.Description
@@ -217,4 +218,25 @@ public class ProductRepository : IProductRepository
      {
          throw new NotImplementedException();
      } */
+
+
+    public void DeleteById(int id)
+    {
+        var product = appDbContext.Products.Include(x => x.Features).Include(x => x.Tags).ThenInclude(x => x.Parent).ThenInclude(x => x.Store).FirstOrDefault(x => x.Id == id);
+        appDbContext.Products.Remove(product);
+        appDbContext.SaveChanges();
+    }
+
+    public void UpdateSum(int id, int sum)
+    {
+        var product = appDbContext.Products.Include(x => x.Features).Include(x => x.Tags).ThenInclude(x => x.Parent).ThenInclude(x => x.Store).FirstOrDefault(x => x.Id == id);
+
+        if (product != null)
+        {
+            product.Price = sum;
+            appDbContext.SaveChanges();
+        }
+        /* appDbContext.Products.Remove(product);
+        appDbContext.SaveChanges(); */
+    }
 }

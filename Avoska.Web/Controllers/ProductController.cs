@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
@@ -69,7 +70,19 @@ namespace Avoska.Web.Controllers
             var products = _productRepository.GetDetailById(id);
             return products;
         }
+        [Authorize]
+        [HttpGet("delete")]
+        public void Delete(int id)
+        {
+            _productRepository.DeleteById(id);
+        }
 
+        [Authorize]
+        [HttpGet("update/sum")]
+        public void Delete(int id, int sum)
+        {
+            _productRepository.UpdateSum(id, sum);
+        }
 
     }
 }

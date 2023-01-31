@@ -13,5 +13,8 @@ public interface IProductRepository
 
     ProductDto GetDetailById(int id);
 
-     IEnumerable<ProductDto> GetSaleProducts();
+    IEnumerable<ProductDto> GetSaleProducts();
+
+    void DeleteById(int id);
+    void UpdateSum(int id, int sum);
 }
