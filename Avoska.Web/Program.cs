@@ -48,6 +48,7 @@ namespace Avoska.Web
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseUrls("https://*:51820", "http://*:51821");
                     webBuilder.UseStartup<Startup>();
                 });
     }
