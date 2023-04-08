@@ -8,15 +8,15 @@ using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InputFiles;
 using System.Linq;
 using RestSharp;
-
+using Telegram.Bot.Types.ReplyMarkups;
 public class TelegramService
 {
     private static TelegramBotClient client;
 
     public TelegramService()
     {
-        client = new TelegramBotClient("1901786898:AAHBiYdaG1zIHH_j7A-ay6TozsI6BwyAOiA");
-
+        /* client = new TelegramBotClient("1901786898:AAHBiYdaG1zIHH_j7A-ay6TozsI6BwyAOiA"); */
+        client = new TelegramBotClient("6135433415:AAFcd5Jf7zOfRS3nw9qQv32y7u1iU8QvrpY");
         //client.OnMessageEdited += BotOnMessageReceived;
         /* 	client.OnMessage += BotOnMessageReceived;
             client.OnMessageEdited += BotOnMessageReceived;
@@ -124,9 +124,20 @@ public class TelegramService
 
 
             //var message = "Заказ на адрес " + order.Address;
-            client.SendTextMessageAsync("-1001763086620", message.ToString(), ParseMode.Html);
+            /*     client.SendTextMessageAsync("-1001763086620", message.ToString(), ParseMode.Html); */
 
-            var clientIcq = new RestClient("https://api.icq.net/bot/v1/messages/sendText?token=001.3284484646.0272366987:1006957038&chatId=AoLNvpYoMpcWFhocuT0&text=" +  message.ToString());
+
+            InlineKeyboardButton approveOrderButton = new InlineKeyboardButton();
+
+            approveOrderButton.Text = "Подтвердить заказ";
+            approveOrderButton.CallbackData = "approve_order";
+
+
+            InlineKeyboardMarkup keyboard = new InlineKeyboardMarkup(approveOrderButton);
+
+            client.SendTextMessageAsync("--1001968184245", message.ToString(), replyMarkup: keyboard, parseMode: ParseMode.Html);
+
+            var clientIcq = new RestClient("https://api.icq.net/bot/v1/messages/sendText?token=001.3284484646.0272366987:1006957038&chatId=AoLNvpYoMpcWFhocuT0&text=" + message.ToString());
             var request = new RestRequest();
             request.AddHeader("Authorization", "Basic ZXVnZW5lLm1hdnJpbkBnbWFpbC5jb206cFhxa3EyZGNEWU5FTHc1bGwxZG42SVE1VFY4WQ==");
             var response = await clientIcq.ExecuteAsync(request);
