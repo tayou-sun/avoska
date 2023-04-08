@@ -135,7 +135,7 @@ public class TelegramService
 
             InlineKeyboardMarkup keyboard = new InlineKeyboardMarkup(approveOrderButton);
 
-            client.SendTextMessageAsync("--1001968184245", message.ToString(), replyMarkup: keyboard, parseMode: ParseMode.Html);
+            client.SendTextMessageAsync("-1001968184245", message.ToString(), replyMarkup: keyboard, parseMode: ParseMode.Html);
 
             var clientIcq = new RestClient("https://api.icq.net/bot/v1/messages/sendText?token=001.3284484646.0272366987:1006957038&chatId=AoLNvpYoMpcWFhocuT0&text=" + message.ToString());
             var request = new RestRequest();
